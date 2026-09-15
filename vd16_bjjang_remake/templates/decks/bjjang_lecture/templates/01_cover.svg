@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <rect width="1280" height="720" fill="#F8FAFC"/>
+  <!-- Top Accent Bar -->
+  <rect x="0" y="0" width="1280" height="6" fill="#2563EB"/>
+  
+  <!-- Content Area -->
+  <g transform="translate(80, 220)">
+    <!-- Category Badge -->
+    <rect x="0" y="0" width="140" height="32" rx="6" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+    <text x="70" y="21" font-family="'Pretendard SemiBold', Pretendard, sans-serif" font-size="14" fill="#1E40AF" text-anchor="middle">LECTURE COURSE</text>
+    
+    <!-- Title -->
+    <text x="0" y="90" font-family="'Pretendard ExtraBold', Pretendard, sans-serif" font-size="52" fill="#0F172A" font-weight="800">강의 대주제 타이틀을 입력하세요</text>
+    
+    <!-- Subtitle -->
+    <text x="0" y="145" font-family="'Pretendard', sans-serif" font-size="24" fill="#475569">실무에서 바로 쓰는 실전 AI 에이전트 & 프레젠테이션 자동화 기법</text>
+    
+    <!-- Divider -->
+    <line x1="0" y1="185" x2="1120" y2="185" stroke="#E2E8F0" stroke-width="1.5"/>
+    
+    <!-- Speaker Meta -->
+    <g transform="translate(0, 220)">
+      <circle cx="20" cy="20" r="20" fill="#1E40AF"/>
+      <text x="20" y="26" font-family="'Pretendard Bold', Pretendard, sans-serif" font-size="16" fill="#FFFFFF" text-anchor="middle">BJ</text>
+      <text x="56" y="18" font-family="'Pretendard Bold', Pretendard, sans-serif" font-size="18" fill="#0F172A">강사 비제이짱 (BJ Jang)</text>
+      <text x="56" y="38" font-family="'Pretendard', sans-serif" font-size="14" fill="#64748B">AI 에이전트 실무 코칭 &amp; 자동화 엔지니어링</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <rect width="1280" height="720" fill="#F8FAFC"/>
+  <!-- Top Accent Bar -->
+  <rect x="0" y="0" width="1280" height="4" fill="#2563EB"/>
+  
+  <!-- Header Section -->
+  <g transform="translate(64, 48)">
+    <text x="0" y="24" font-family="'Pretendard SemiBold', Pretendard, sans-serif" font-size="14" fill="#2563EB" letter-spacing="1">MODULE 02 · CORE PRINCIPLES</text>
+    <text x="0" y="60" font-family="'Pretendard ExtraBold', Pretendard, sans-serif" font-size="34" fill="#0F172A" font-weight="800">성공적인 AI 자동화를 위한 3대 핵심 기둥</text>
+    <text x="0" y="90" font-family="'Pretendard', sans-serif" font-size="16" fill="#64748B">원칙 없는 도구 도입은 실패합니다. 명확한 파이프라인과 데이터 흐름을 먼저 정립하세요.</text>
+  </g>
+
+  <!-- 3 Cards Layout -->
+  <g transform="translate(64, 180)">
+    <!-- Card 1 -->
+    <g transform="translate(0, 0)">
+      <rect width="365" height="440" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+      <rect x="24" y="24" width="48" height="48" rx="8" fill="#EFF6FF"/>
+      <text x="48" y="54" font-family="'Pretendard Bold', Pretendard, sans-serif" font-size="20" fill="#1E40AF" text-anchor="middle">01</text>
+      <text x="24" y="112" font-family="'Pretendard Bold', Pretendard, sans-serif" font-size="22" fill="#0F172A">맥락 정의 (Context)</text>
+      <text x="24" y="142" font-family="'Pretendard', sans-serif" font-size="15" fill="#475569" width="317">
+        AI 에이전트가 처리할 도메인의 규칙과 제약조건을 사전에 정밀하게 설계합니다.
+      </text>
+      <line x1="24" y1="210" x2="341" y2="210" stroke="#F1F5F9" stroke-width="1"/>
+      <text x="24" y="244" font-family="'Pretendard SemiBold', Pretendard, sans-serif" font-size="14" fill="#2563EB">체크포인트</text>
+      <text x="24" y="274" font-family="'Pretendard', sans-serif" font-size="14" fill="#64748B">• 목표와 결과물 포맷 정의</text>
+      <text x="24" y="302" font-family="'Pretendard', sans-serif" font-size="14" fill="#64748B">• 예외 케이스 처리 기준 마련</text>
+    </g>
+
+    <!-- Card 2 (Highlight) -->
+    <g transform="translate(393, 0)">
+      <rect width="365" height="440" rx="12" fill="#FFFFFF" stroke="#2563EB" stroke-width="2"/>
+      <rect x="0" y="0" width="365" height="6" rx="3" fill="#2563EB"/>
+      <rect x="24" y="24" width="48" height="48" rx="8" fill="#2563EB"/>
+      <text x="48" y="54" font-family="'Pretendard Bold', Pretendard, sans-serif" font-size="20" fill="#FFFFFF" text-anchor="middle">02</text>
+      <text x="24" y="112" font-family="'Pretendard Bold', Pretendard, sans-serif" font-size="22" fill="#1E40AF">파이프라인 (Pipeline)</text>
+      <text x="24" y="142" font-family="'Pretendard', sans-serif" font-size="15" fill="#334155">
+        한 번에 모든 것을 시키지 않고, 단계별 역할(Architect ➔ Generator ➔ QA)로 분리합니다.
+      </text>
+      <line x1="24" y1="210" x2="341" y2="210" stroke="#EFF6FF" stroke-width="1"/>
+      <text x="24" y="244" font-family="'Pretendard SemiBold', Pretendard, sans-serif" font-size="14" fill="#2563EB">핵심 가치 (권장)</text>
+      <text x="24" y="274" font-family="'Pretendard', sans-serif" font-size="14" fill="#334155">• 단계별 단방향 데이터 전달</text>
+      <text x="24" y="302" font-family="'Pretendard', sans-serif" font-size="14" fill="#334155">• 중간 실패 시 자동 복구 로직</text>
+    </g>
+
+    <!-- Card 3 -->
+    <g transform="translate(786, 0)">
+      <rect width="365" height="440" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+      <rect x="24" y="24" width="48" height="48" rx="8" fill="#EFF6FF"/>
+      <text x="48" y="54" font-family="'Pretendard Bold', Pretendard, sans-serif" font-size="20" fill="#1E40AF" text-anchor="middle">03</text>
+      <text x="24" y="112" font-family="'Pretendard Bold', Pretendard, sans-serif" font-size="22" fill="#0F172A">검증과 환류 (Validation)</text>
+      <text x="24" y="142" font-family="'Pretendard', sans-serif" font-size="15" fill="#475569">
+        최종 파일 내보내기 전 규격, 줄바꿈, 명암비를 룰 기반으로 자동 검수합니다.
+      </text>
+      <line x1="24" y1="210" x2="341" y2="210" stroke="#F1F5F9" stroke-width="1"/>
+      <text x="24" y="244" font-family="'Pretendard SemiBold', Pretendard, sans-serif" font-size="14" fill="#2563EB">체크포인트</text>
+      <text x="24" y="274" font-family="'Pretendard', sans-serif" font-size="14" fill="#64748B">• 폰트 누락 및 깨짐 방지</text>
+      <text x="24" y="302" font-family="'Pretendard', sans-serif" font-size="14" fill="#64748B">• 네이티브 객체 편집 가능 여부</text>
+    </g>
+  </g>
+
+  <!-- Footer -->
+  <g transform="translate(64, 668)">
+    <text x="0" y="20" font-family="'Pretendard', sans-serif" font-size="12" fill="#94A3B8">비제이짱 AI 에이전트 실무 교안 · Copyright © BJ Jang</text>
+    <text x="1152" y="20" font-family="'Pretendard Bold', Pretendard, sans-serif" font-size="12" fill="#94A3B8" text-anchor="end">03 / 15</text>
+  </g>
+</svg>
