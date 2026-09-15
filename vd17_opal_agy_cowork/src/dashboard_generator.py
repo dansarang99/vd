@@ -362,7 +362,7 @@ def generate_html_dashboard(eda_results, charts_dict, output_path):
             </div>
         </div>
         <p class="text-gray-500">
-            &copy; 2026 비제이짱(BJ Jang) AI 실무 자동화 마스터 시리즈 vd17. All rights reserved. Powered by Google Opal & Antigravity Cowork.
+            &copy; 2026 (AX)창업기술 이한규 대표 AI 실무 자동화 마스터 시리즈 vd17. All rights reserved. Powered by Google Opal & Antigravity Cowork.
         </p>
     </footer>
 

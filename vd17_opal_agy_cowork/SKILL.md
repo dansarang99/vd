@@ -1,7 +1,7 @@
 ---
 name: vd17_opal_agy_cowork
 description: >
-  비제이짱(BJ Jang)의 Google Opal & Antigravity Cowork 마스터 자동화 스킬 (vd17).
+  이한규 대표((AX)창업기술)의 Google Opal & Antigravity Cowork 마스터 자동화 스킬 (vd17).
   공공데이터포털(오픈API) 및 Google Opal 노코드 워크플로우를 연동하여 '완주로컬푸드 오늘의 판매현황'
   데이터를 실시간 수집하고, 자동 탐색적 데이터 분석(EDA)과 4대 고해상도(300 DPI) 경영진 비즈니스 차트,
   반응형 글래스모피즘 웹 대시보드를 생성하며, 1시간 주기로 자동 갱신 및 히스토리 아카이빙을 수행하는
@@ -10,8 +10,9 @@ description: >
 
 # 🚀 Google Opal & Antigravity Cowork Master (vd17_opal_agy_cowork)
 
-> **비제이짱(BJ Jang)의 AI 실무 자동화 마스터 시리즈 17번째 공식 스킬**  
+> **이한규 대표((AX)창업기술)의 AI 실무 자동화 마스터 시리즈 17번째 공식 스킬**  
 > Google Labs Opal의 직관적인 AI 워크플로우와 Antigravity의 강력한 멀티에이전트 오케스트레이션, 그리고 Cowork의 협업형 실행 모드를 결합한 최고급 실시간 데이터 자동화 엔진입니다.
+
 
 ---
 

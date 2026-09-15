@@ -20,7 +20,7 @@ from scheduler import run_scheduler
 
 def run_verification():
     print("==============================================================================")
-    print("      [BJ JANG] vd17_opal_agy_cowork 스킬 사전 무결성 검증 (Preflight)")
+    print("      [(AX)창업기술 이한규 대표] vd17_opal_agy_cowork 스킬 사전 무결성 검증 (Preflight)")
     print("==============================================================================")
 
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

@@ -1,5 +1,5 @@
 [000]_command.txt
-비제이짱(BJ Jang)의 AI 실무 자동화 마스터 시리즈 vd17: Opal & Antigravity Cowork 마스터 자동화 파이프라인 구축.
+이한규 대표((AX)창업기술)의 AI 실무 자동화 마스터 시리즈 vd17: Opal & Antigravity Cowork 마스터 자동화 파이프라인 구축.
 
 [목표]
 Google Opal(노코드/로우코드 AI 미니앱 워크플로우)과 Google Antigravity(멀티에이전트 오케스트레이션 및 백그라운드 자동화 스케줄러), 그리고 Cowork(협업형 파일 기반 파이프라인)의 장점을 결합하여, 공공데이터포털의 '전라북도 완주군 로컬푸드 품목별 판매현황' 오픈API 데이터를 실시간으로 수집하고, 실시간 탐색적 데이터 분석(EDA)을 수행하며, 1시간 주기로 자동 업데이트되는 최고급 글래스모피즘 실시간 대시보드와 C-Level 보고서를 생성하는 전역 스킬(vd17_opal_agy_cowork)을 완성한다.

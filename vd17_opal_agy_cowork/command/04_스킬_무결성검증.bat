@@ -1,7 +1,7 @@
 @echo off
 chcp 65001 > nul
 echo ==============================================================================
-echo       [BJ JANG] vd17_opal_agy_cowork 스킬 무결성 검증 (Preflight)
+echo       [(AX)창업기술 이한규 대표] vd17_opal_agy_cowork 스킬 무결성 검증 (Preflight)
 echo ==============================================================================
 python "%~dp0..\src\verify.py"
 pause
