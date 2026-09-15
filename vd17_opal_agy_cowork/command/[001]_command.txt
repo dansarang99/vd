@@ -1,0 +1,12 @@
+[001]_command.txt
+공공데이터포털 "전라북도 완주군 로컬푸드 품목별 판매현황" 오픈API와 Google Opal 워크플로우를 Antigravity Cowork 파이프라인으로 연결하여, 실시간 수집 -> EDA 분석 -> 고화질 차트 -> 반응형 실시간 HTML 대시보드 -> 1시간 간격 자동 스케줄링이 작동하는 전역 스킬(vd17_opal_agy_cowork)을 완성해줘.
+
+주요 요구사항:
+1. API 미발급 또는 네트워크 단절 시에도 완벽히 작동하는 실시간 동적 시뮬레이션 Fallback 엔진 내장
+2. Google Opal 노드 기반 워크플로우 명세(Blueprint JSON)와 즉시 연동 가능한 커넥터(src/opal_connector.py)
+3. 수집된 판매 데이터를 정제하고 핵심 통계량(KPI)을 도출하는 탐색적 데이터 분석기(src/eda_engine.py)
+4. 한글 폰트(Pretendard/맑은고딕)가 적용된 고해상도 경영진 시각화 차트 4종 생성기(src/visualizer.py)
+5. 실시간 리프레시 및 상태 모니터링이 가능한 글래스모피즘 웹 대시보드 생성기(src/dashboard_generator.py)
+6. 1시간 주기로 최신 데이터를 갱신하고 증분 이력을 보존하는 스케줄러 데몬(src/scheduler.py)
+7. 통합 실행 엔트리포인트(src/main.py) 및 수강생 실습용 주피터 노트북(jupyternotebook/[001]_완주로컬푸드_오팔_EDA_자동화.ipynb)
+8. vd_github 마스터 카탈로그 및 전역 스킬(~/.gemini/config/skills/vd17_opal_agy_cowork) Junction 등록

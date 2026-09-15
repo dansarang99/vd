@@ -1,0 +1,51 @@
+{
+  "opal_version": "2026.1",
+  "app_name": "Wanju_LocalFood_Realtime_Monitor",
+  "title": "완주로컬푸드 오늘의 판매현황 실시간 모니터링 에이전트",
+  "description": "공공데이터포털 오픈API를 호출하여 시간대별 완주군 로컬푸드 직매장 매출을 집계하고 실시간 분석 CSV를 생성하는 Opal 워크플로우",
+  "nodes": [
+    {
+      "id": "node_trigger",
+      "type": "schedule_trigger",
+      "params": {
+        "interval_minutes": 60,
+        "active_hours": "08:00-21:00"
+      }
+    },
+    {
+      "id": "node_api_fetch",
+      "type": "rest_api_request",
+      "params": {
+        "url": "https://apis.data.go.kr/4790000/localFoodSaleInfo/getSaleInfo",
+        "method": "GET",
+        "timeout_seconds": 5,
+        "response_format": "XML"
+      }
+    },
+    {
+      "id": "node_agent_cleaner",
+      "type": "gemini_agent",
+      "params": {
+        "model": "gemini-2.5-flash",
+        "system_prompt": "완주로컬푸드 판매 XML 데이터를 JSON 및 CSV 레코드로 정규화하고 이상치를 보정하십시오."
+      }
+    },
+    {
+      "id": "node_sink_csv",
+      "type": "file_export",
+      "params": {
+        "output_path": "result/latest_sales.csv",
+        "format": "csv",
+        "encoding": "utf-8-sig"
+      }
+    },
+    {
+      "id": "node_agy_cowork_bridge",
+      "type": "webhook_or_script_trigger",
+      "params": {
+        "command": "python src/main.py --source-csv result/latest_sales.csv",
+        "workspace": "vd17_opal_agy_cowork"
+      }
+    }
+  ]
+}
