@@ -30,6 +30,11 @@ import html
 import os
 import re
 import sys
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
 import zipfile
 import xml.dom.minidom as minidom
 import xml.etree.ElementTree as ET
