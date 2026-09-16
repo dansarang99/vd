@@ -14,6 +14,7 @@
 | **`vd05`** | **HWPX & PSST Business Plan Engine** | **공공기관 표준 전자문서 & 정부지원사업(PSST) 자동화**<br>• 2026 초기창업패키지/예비창업패키지 PSST 4대 영역 자동 빌드<br>• 한컴오피스 글씨 겹침 버그(linesegarray) 100% 원천 차단<br>• mimetype 무압축 규약 및 붕어빵 틀 기법 동적 표 확장<br>• OWPML 스키마 무결성 사전 검증 게이트키퍼(verify_hwpx) | [🔗 폴더 이동](./vd05_hwpx_skill) |
 | **`vd15`** | **Slide Style Cloner v2.0** | **정밀 수술형 슬라이드 복제(Surgical Remake)**<br>• 최고급 템플릿의 3D 럭셔리 그래픽/레이아웃 100% 보존<br>• 외주 브랜드 로고 및 하이퍼링크 완전 박멸<br>• C-Level 전략 내러티브 및 맞춤 미디어 인-플레이스 주입 | [🔗 폴더 이동](./vd15_slide_style_cloner) |
 | **`vd16`** | **BJ Jang Presentation & EDA Master** | **원천 데이터 자동 EDA ➔ 네이티브 PPTX 자동화**<br>• CSV/Excel/API 데이터 자동 탐색적 분석(EDA) & 통계량 산출<br>• 비제이짱 시그니처 로열 블루 고화질 차트 4종 렌더링<br>• 16:9 DrawingML 파워포인트 개체별 100% 직접 편집 지원<br>• 슬라이드별 1분 통계 분석가 발표 대본(스피커 노트) 자동 주입 | [🔗 폴더 이동](./vd16_bjjang_remake) |
+| **`vd22`** | **Google Flow & Vids AI Video Pipeline** | **5단계 파이프라인 & 5대 마스터 대본 자동화**<br>• 기획 아이디어 ➔ 캐릭터 ➔ 시트 ➔ 시놉시스 ➔ 5대 대본 일괄 생성<br>• 이미지, 비디오, 나레이션, 자막, 효과음 5개 트랙 분리 산출<br>• Google Flow, Google Vids, Vrew, CapCut 원스톱 연동<br>• 대본에서 SRT 자막 파일 자동 추출 파이썬 유틸리티 제공 | [🔗 폴더 이동](./vd22_google_vids) |
 
 ---
 
@@ -66,6 +67,12 @@ Problem, Solution, Scale-up, Team 4대 영역과 요약표를 알차게 작성�
 "data/sample_sales_data.csv 파일 분석해줘. 
 비제이짱 EDA 템플릿(bjjang_eda)으로 핵심 지표와 고화질 차트, 
 발표 대본이 담긴 7장짜리 임원 보고용 PPT 만들어줘."
+```
+
+### [VD22] 구글 Flow & Vids 5단계 AI 비디오 대본 생성
+```text
+"'토끼와 거북이의 달리기 시합'을 주제로 ai-video-pipeline 스킬을 적용해줘.
+1단계 캐릭터 생성부터 5단계 5대 대본(이미지, 동영상, 나레이션, 자막, 효과음)까지 표와 코드블록으로 완벽하게 작성해줘."
 ```
 
 ---

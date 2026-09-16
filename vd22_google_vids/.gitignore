@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environment & Temp
+.env
+.venv
+env/
+venv/
+ENV/
+*.tmp
+*.log
+
+# Scratch & Extraction
+extracted_pdf_text.txt
+.system_generated/
