@@ -1,26 +1,27 @@
-# 🎓 VD (Visual Design & AI Presentation Master Series)
+# 🚀 VD (Visual Design & AI Presentation Master Series)
 
-> **(AX)창업기술 이한규 대표의 AI 실무 자동화 & 프레젠테이션 마스터 공식 스킬 저장소**  
-> 총괄 및 기획: 이한규 대표 ((AX)창업기술) | GitHub: [@dansarang99](https://github.com/dansarang99)
+> **(AX)창업지도사 장대표의 AI 실무 자동화 & 프레젠테이션 스킬 시리즈**  
+> 총괄 기획: 장대표 ((AX)창업지도사) | GitHub: [@dansarang99](https://github.com/dansarang99)
 
-본 저장소는 `vd01`부터 `vd99`까지 총 100개의 실무 강의 모듈 중, **AI 에이전트(Claude Code, Codex, Antigravity 등)에 스킬(Skill)로 탑재하여 즉시 실무에 투입 가능한 엄선된 핵심 프레젠테이션 도구들**을 모아 체계적으로 관리하고 배포하는 공식 마스터 리포지토리입니다.
+이 저장소는 `vd01`부터 `vd99`까지 총 100개의 실무 시나리오를 바탕으로, **AI 에이전트(Claude Code, Codex, Antigravity 등)의 스킬(Skill)로 탑재하여 현업 실무를 1초 만에 완성하는 비즈니스 솔루션**을 체계적으로 구축하는 오픈소스 리포지토리입니다.
 
 ---
 
-## 🏛️ Master Skills Catalog
+## 📊 Master Skills Catalog
 
-| 모듈 ID | 스킬 명칭 | 핵심 기능 및 차별화 포인트 | 바로가기 |
+| 스킬 ID | 스킬 명칭 | 핵심 비즈니스 자동화 임팩트 | 바로가기 |
 | :---: | :--- | :--- | :---: |
-| **`vd05`** | **HWPX & PSST Business Plan Engine** | **공공기관 표준 전자문서 & 정부지원사업(PSST) 자동화**<br>• 2026 초기창업패키지/예비창업패키지 PSST 4대 영역 자동 빌드<br>• 한컴오피스 글씨 겹침 버그(linesegarray) 100% 원천 차단<br>• mimetype 무압축 규약 및 붕어빵 틀 기법 동적 표 확장<br>• OWPML 스키마 무결성 사전 검증 게이트키퍼(verify_hwpx) | [🔗 폴더 이동](./vd05_hwpx_skill) |
-| **`vd15`** | **Slide Style Cloner v2.0** | **정밀 수술형 슬라이드 복제(Surgical Remake)**<br>• 최고급 템플릿의 3D 럭셔리 그래픽/레이아웃 100% 보존<br>• 외주 브랜드 로고 및 하이퍼링크 완전 박멸<br>• C-Level 전략 내러티브 및 맞춤 미디어 인-플레이스 주입 | [🔗 폴더 이동](./vd15_slide_style_cloner) |
-| **`vd16`** | **BJ Jang Presentation & EDA Master** | **원천 데이터 자동 EDA ➔ 네이티브 PPTX 자동화**<br>• CSV/Excel/API 데이터 자동 탐색적 분석(EDA) & 통계량 산출<br>• 비제이짱 시그니처 로열 블루 고화질 차트 4종 렌더링<br>• 16:9 DrawingML 파워포인트 개체별 100% 직접 편집 지원<br>• 슬라이드별 1분 통계 분석가 발표 대본(스피커 노트) 자동 주입 | [🔗 폴더 이동](./vd16_bjjang_remake) |
-| **`vd17`** | **Opal & Antigravity Cowork Master** | **Google Opal 노코드 워크플로우 & 공공데이터 실시간 자동화**<br>• 공공데이터포털 '완주로컬푸드 오늘의 판매현황' API 실시간 연동<br>• Google Opal Blueprint JSON 생성 및 동적 시뮬레이션 Fallback<br>• 300 DPI 럭셔리 비즈니스 차트 4종 & C-Level 마크다운 브리핑<br>• 글래스모피즘 실시간 반응형 웹 대시보드 & 1시간 주기 자동 스케줄러 | [🔗 폴더 이동](./vd17_opal_agy_cowork) |
+| **`vd05`** | **HWPX & PSST Business Plan Engine** | **정부 표준 문서 & 사업계획서(PSST) 자동화**<br>• 2026 초기창업패키지/예비창업패키지 PSST 4대 챕터 자동 생성<br>• 한컴오피스 줄바꿈 깨짐 방지(linesegarray) 100% 엄격 검증<br>• mimetype 선두 배치 및 무손실 파일 검증 | [📘 가이드](./vd05_hwpx_skill) |
+| **`vd15`** | **Slide Style Cloner v2.0** | **경영진 프레젠테이션 스타일 복제(Surgical Remake)**<br>• 최고급 프리미엄 3D 스타일 그래픽/레이아웃 100% 계승<br>• 외부 브랜드 로고 및 워터마크 무결점 제거<br>• C-Level 서사 구조 기반 1:1 인플레이스 리메이크 | [📘 가이드](./vd15_slide_style_cloner) |
+| **`vd16`** | **BJ Jang Presentation & EDA Master** | **현장 데이터 자동 EDA 및 경영진 PPTX 자동화**<br>• CSV/Excel/API 기반 자동 탐색적 데이터 분석(EDA)<br>• 장대표 시그니처 네이비 & 포인트 컬러 4종 차트 자동 생성<br>• 16:9 DrawingML 컴포넌트 완벽 호환 슬라이드 제작 | [📘 가이드](./vd16_bjjang_remake) |
+| **`vd17`** | **Opal & Antigravity Cowork Master** | **Google Opal 자동 워크플로우 & 공공데이터 실시간 자동화**<br>• 공공데이터 '로컬푸드 직매장 판매현황' API 실시간 연동<br>• Google Opal Blueprint JSON 자동 생성 및 시뮬레이션 Fallback<br>• 300 DPI 차트 4종 & 1시간 주기 자동 스케줄러 탑재 | [📘 가이드](./vd17_opal_agy_cowork) |
+| **`vd23` / `vd2023`** | **Google Opal Automation App Prompt Crafter** | **구글 오팔(Google Opal) 좌측 창 전용 메타 프롬프트 빌더**<br>• C-I-P-O-E 5대 아키텍처 기반 다단계 워크플로우 그래프 자동 생성<br>• 린 캔버스, PSST 사업계획서, 경쟁사 배틀카드 등 10대 창업앱 내장<br>• 강의 시연용 Streamlit 인터랙티브 웹 대시보드 & 원클릭 배치 제공 | [📘 가이드](./vd23_google_opal) |
 
 ---
 
-## 🚀 수강생 원클릭 설치 및 사용 가이드
+## ⚡ 원클릭 설치 및 실행 가이드
 
-모든 스킬 모듈은 **비개발자 수강생도 더블클릭 한 번으로 환경을 구축**할 수 있도록 통일된 원클릭 배치 파일(`setup_*.bat` / `01_환경설정_원클릭.bat`)을 제공합니다.
+각 스킬 폴더는 **비개발자도 원클릭으로 실행 환경을 구축**할 수 있도록 윈도우 배치 파일(`01_환경설치_원클릭.bat` 등)을 제공합니다.
 
 ### 1단계: 저장소 복제 (Git Clone)
 ```bash
@@ -28,61 +29,52 @@ git clone https://github.com/dansarang99/vd.git
 cd vd
 ```
 
-### 2단계: 원하는 스킬 모듈로 이동 후 원클릭 설치
-* **`vd05` 한글(HWPX) & PSST 사업계획서 스킬 사용 시**:
+### 2단계: 원하는 스킬 폴더로 이동 후 원클릭 실행
+* **`vd05` 한글(HWPX) & PSST 사업계획서 스킬**:
   ```bash
   cd vd05_hwpx_skill
-  # setup_vd05.bat 더블클릭 실행
+  setup_vd05.bat 실행
   ```
-* **`vd15` 슬라이드 스타일 복제 스킬 사용 시**:
+* **`vd15` 슬라이드 스타일 복제 스킬**:
   ```bash
   cd vd15_slide_style_cloner
-  # setup_vd15.bat 더블클릭 실행
+  setup_vd15.bat 실행
   ```
-* **`vd16` 비제이짱 프레젠테이션 & EDA 스킬 사용 시**:
+* **`vd16` 장대표 프레젠테이션 & EDA 스킬**:
   ```bash
   cd vd16_bjjang_remake
-  # setup_bjjang.bat 더블클릭 실행
+  setup_bjjang.bat 실행
   ```
-* **`vd17` Opal & Antigravity Cowork 자동화 스킬 사용 시**:
+* **`vd17` Opal & Antigravity Cowork 자동화 스킬**:
   ```bash
   cd vd17_opal_agy_cowork
-  # command\01_환경설정_원클릭.bat 더블클릭 실행
+  command\01_환경설치_원클릭.bat 실행
+  ```
+* **`vd23` / `vd2023` Google Opal 앱 생성 프롬프트 빌더**:
+  ```bash
+  cd vd23_google_opal
+  command\01_환경설치_원클릭.bat 실행
+  command\03_Streamlit_웹앱_실행.bat 실행
   ```
 
 ---
 
-## 💬 실전 호출 프롬프트 (Prompt Examples)
+## 💡 스킬 호출 프롬프트 예시 (Prompt Examples)
 
-### [VD05] 2026 초기창업패키지 사업계획서 작성
+### [VD23] Google Opal 자동화 앱 생성 프롬프트 생성
 ```text
-"vd05 스킬로 2026년도 초기창업패키지 사업계획서 HWPX 작성해줘. 
-아이템명은 '시니어 AI 케어 전자책', 대표자는 '(AX)창업기술 이한규'야. 
-Problem, Solution, Scale-up, Team 4대 영역과 요약표를 알차게 작성하고 검증까지 완료해줘."
+"vd23 스킬을 사용해서 '예비창업자 정부지원사업 PSST 사업계획서 초안 빌더' 앱을 
+Google Opal 좌측 입력창에 넣을 수 있는 C-I-P-O-E 5대 규격 프롬프트로 생성해줘."
 ```
 
-### [VD15] 슬라이드 스타일 복제 & 리메이크
+### [VD17] 로컬푸드 Opal 실시간 모니터링 & 1시간 주기 자동화
 ```text
-"upload/reference_deck.pptx 파일의 럭셔리 3D 디자인을 분석해서, 
-외주사 로고는 깔끔하게 삭제하고 '신규 AI 플랫폼 사업계획서' 내용으로 1:1 서지컬 리메이크해줘."
+"vd17 스킬을 적용해서 오늘 로컬푸드 직매장 판매현황을 Opal 워크플로우로 분석하고, 
+EDA 보고서, 300 DPI 차트 4종, 1시간 자동 갱신 대시보드를 생성해줘."
 ```
-
-### [VD16] 원천 데이터 자동 EDA & 경영진 보고서
-```text
-"data/sample_sales_data.csv 파일 분석해줘. 
-비제이짱 EDA 템플릿(bjjang_eda)으로 핵심 지표와 고화질 차트, 
-발표 대본이 담긴 7장짜리 임원 보고용 PPT 만들어줘."
-```
-
-### [VD17] 완주로컬푸드 Opal 실시간 모니터링 & 1시간 주기 자동화
-```text
-"vd17 스킬을 사용해서 공공데이터포털 완주로컬푸드 오늘의 판매현황을 Opal 워크플로우로 수집하고, 
-EDA 분석, 300 DPI 고해상도 차트 4종, 1시간마다 자동 갱신되는 글래스모피즘 대시보드를 구축해줘."
-```
-
 
 ---
 
 ## 📜 라이선스 및 저작권 (License)
-* 본 저장소의 모든 스킬은 오픈소스 기반(MIT License)의 윤리적 가이드라인을 준수하며, (AX)창업기술 이한규 대표의 독창적인 실무 아키텍처와 한국어 최적화가 적용된 2차적 저작물입니다. (단, vd16 등 특정 모듈은 해당 오픈소스 기여자 및 배포자의 크레딧을 함께 표기합니다.)
-* 상업적 활용, 강의 교재 사용, 커뮤니티 재배포가 자유롭게 허용됩니다.
+* 본 저장소의 모든 스킬은 오픈소스 라이선스(MIT License)를 기본으로 채택하며, (AX)창업지도사 장대표의 고유 실무 지식재산권과 한글화 노하우를 바탕으로 한 2차적 저작물입니다.
+* 교육, 비즈니스 컨설팅, 커뮤니티 전파에 자유롭게 활용하실 수 있습니다.
