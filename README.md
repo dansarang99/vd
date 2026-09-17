@@ -15,6 +15,7 @@
 | **`vd15`** | **Slide Style Cloner v2.0** | **경영진 프레젠테이션 스타일 복제(Surgical Remake)**<br>• 최고급 프리미엄 3D 스타일 그래픽/레이아웃 100% 계승<br>• 외부 브랜드 로고 및 워터마크 무결점 제거<br>• C-Level 서사 구조 기반 1:1 인플레이스 리메이크 | [📘 가이드](./vd15_slide_style_cloner) |
 | **`vd16`** | **BJ Jang Presentation & EDA Master** | **현장 데이터 자동 EDA 및 경영진 PPTX 자동화**<br>• CSV/Excel/API 기반 자동 탐색적 데이터 분석(EDA)<br>• 장대표 시그니처 네이비 & 포인트 컬러 4종 차트 자동 생성<br>• 16:9 DrawingML 컴포넌트 완벽 호환 슬라이드 제작 | [📘 가이드](./vd16_bjjang_remake) |
 | **`vd17`** | **Opal & Antigravity Cowork Master** | **Google Opal 자동 워크플로우 & 공공데이터 실시간 자동화**<br>• 공공데이터 '로컬푸드 직매장 판매현황' API 실시간 연동<br>• Google Opal Blueprint JSON 자동 생성 및 시뮬레이션 Fallback<br>• 300 DPI 차트 4종 & 1시간 주기 자동 스케줄러 탑재 | [📘 가이드](./vd17_opal_agy_cowork) |
+| **`vd22`** | **Google Flow & Vids AI Video Pipeline** | **5단계 기획 & 5대 제작 대본 자동화**<br>• 기획 아이디어 ➔ 캐릭터 ➔ 시트 ➔ 시놉시스 ➔ 5대 대본 일괄 생성<br>• 이미지, 비디오, 나레이션, 자막, 효과음 5대 트랙 분리 설계<br>• Google Flow, Google Vids, Vrew, CapCut 완벽 연동 | [📘 가이드](./vd22_google_vids) |
 | **`vd23` / `vd2023`** | **Google Opal Automation App Prompt Crafter** | **구글 오팔(Google Opal) 좌측 창 전용 메타 프롬프트 빌더**<br>• C-I-P-O-E 5대 아키텍처 기반 다단계 워크플로우 그래프 자동 생성<br>• 린 캔버스, PSST 사업계획서, 경쟁사 배틀카드 등 10대 창업앱 내장<br>• 강의 시연용 Streamlit 인터랙티브 웹 대시보드 & 원클릭 배치 제공 | [📘 가이드](./vd23_google_opal) |
 
 ---
@@ -50,6 +51,11 @@ cd vd
   cd vd17_opal_agy_cowork
   command\01_환경설치_원클릭.bat 실행
   ```
+* **`vd22` AI 영상 제작 파이프라인 스킬**:
+  ```bash
+  cd vd22_google_vids
+  # SKILL.md 지침에 따라 실행
+  ```
 * **`vd23` / `vd2023` Google Opal 앱 생성 프롬프트 빌더**:
   ```bash
   cd vd23_google_opal
@@ -65,6 +71,12 @@ cd vd
 ```text
 "vd23 스킬을 사용해서 '예비창업자 정부지원사업 PSST 사업계획서 초안 빌더' 앱을 
 Google Opal 좌측 입력창에 넣을 수 있는 C-I-P-O-E 5대 규격 프롬프트로 생성해줘."
+```
+
+### [VD22] 구글 Flow & Vids 5단계 AI 영상 대본 제작
+```text
+"'토끼와 거북이의 달리기 대결'을 주제로 ai-video-pipeline 스킬을 활성화해줘. 
+캐릭터 설계부터 5대 대본(이미지, 비디오, 나레이션, 자막, 효과음)까지 완벽하게 작성해줘."
 ```
 
 ### [VD17] 로컬푸드 Opal 실시간 모니터링 & 1시간 주기 자동화
