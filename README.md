@@ -17,7 +17,7 @@
 | **`vd17`** | **Opal & Antigravity Cowork Master** | **Google Opal 자동 워크플로우 & 공공데이터 실시간 자동화**<br>• 공공데이터 '로컬푸드 직매장 판매현황' API 실시간 연동<br>• Google Opal Blueprint JSON 자동 생성 및 시뮬레이션 Fallback<br>• 300 DPI 차트 4종 & 1시간 주기 자동 스케줄러 탑재 | [📘 가이드](./vd17_opal_agy_cowork) |
 | **`vd22`** | **Google Flow & Vids AI Video Pipeline** | **5단계 기획 & 5대 제작 대본 자동화**<br>• 기획 아이디어 ➔ 캐릭터 ➔ 시트 ➔ 시놉시스 ➔ 5대 대본 일괄 생성<br>• 이미지, 비디오, 나레이션, 자막, 효과음 5대 트랙 분리 설계<br>• Google Flow, Google Vids, Vrew, CapCut 완벽 연동 | [📘 가이드](./vd22_google_vids) |
 | **`vd23` / `vd2023`** | **Google Opal Automation App Prompt Crafter** | **구글 오팔(Google Opal) 좌측 창 전용 메타 프롬프트 빌더**<br>• C-I-P-O-E 5대 아키텍처 기반 다단계 워크플로우 그래프 자동 생성<br>• 린 캔버스, PSST 사업계획서, 경쟁사 배틀카드 등 10대 창업앱 내장<br>• 강의 시연용 Streamlit 인터랙티브 웹 대시보드 & 원클릭 배치 제공 | [📘 가이드](./vd23_google_opal) |
-| **`vd26`** | **PPT Style Cloner Pro** | **4대 마스터 자산 추출 & 2단계 무결 복제 및 1:1 정밀 검증**<br>• Business DNA, DESIGN.md(8요소), STYLE.md, TEMPLATE.md 추출<br>• 원문 토씨 100% 일치 제1차 무결 복제(Gen-1 Replica)<br>• 1:1 QA Gap Analysis 및 제2차 고도화 완성 슬라이드(Gen-2 Master) | [📘 가이드](./vd26_ppt_clone_skill) |
+| **`vd26`** | **PPT Style Cloner Pro** | **4대 마스터 자산 추출 & 2단계 무결 복제 및 1:1 정밀 검증**<br>• Business DNA, DESIGN.md(8요소), STYLE.md, TEMPLATE.md 추출<br>• 원문 토씨 100% 일치 제1차 무결 복제(Gen-1 Replica)<br>• 1:1 QA Gap Analysis 및 제2차 고도화 완성 슬라이드(Gen-2 Master) | [📘 가이드](./vd26_ppt_clone_skill/README.md) |
 
 ---
 
