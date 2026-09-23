@@ -1,0 +1,2098 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 Antigravity | 네이버 쇼핑 황금키워드 인텔리전스</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+  :root {
+    --bg-main: #090d16;
+    --card-bg: rgba(22, 30, 49, 0.75);
+    --border: rgba(255, 255, 255, 0.08);
+    --primary: #38bdf8;
+    --secondary: #818cf8;
+    --emerald: #34d399;
+    --amber: #fbbf24;
+    --rose: #f43f5e;
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', sans-serif; }
+  body { background: var(--bg-main); color: var(--text-primary); min-height: 100vh; padding: 2.5rem; }
+  
+  .top-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; margin-bottom: 2rem; }
+  .title-h1 { font-size: 2.1rem; font-weight: 800; background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .title-sub { color: var(--text-muted); font-size: 0.95rem; margin-top: 0.4rem; }
+  .live-badge { background: rgba(56, 189, 248, 0.12); color: var(--primary); border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.5rem 1.1rem; border-radius: 9999px; font-size: 0.85rem; font-weight: 700; }
+  
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-bottom: 2rem; }
+  .kpi-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 1.2rem; padding: 1.5rem; backdrop-filter: blur(16px); position: relative; overflow: hidden; }
+  .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--primary), var(--secondary)); }
+  .kpi-label { color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+  .kpi-val { font-size: 2rem; font-weight: 800; margin-top: 0.6rem; color: #ffffff; }
+  .kpi-desc { font-size: 0.82rem; color: var(--emerald); margin-top: 0.4rem; }
+  
+  .charts-grid { display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 1.5rem; margin-bottom: 2.5rem; }
+  .chart-panel { background: var(--card-bg); border: 1px solid var(--border); border-radius: 1.2rem; padding: 1.5rem; backdrop-filter: blur(16px); }
+  .chart-header { font-size: 1.1rem; font-weight: 700; margin-bottom: 1.2rem; display: flex; justify-content: space-between; align-items: center; }
+  
+  .table-section { background: var(--card-bg); border: 1px solid var(--border); border-radius: 1.2rem; overflow: hidden; backdrop-filter: blur(16px); }
+  .table-toolbar { padding: 1.3rem 1.8rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+  
+  .filter-group { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .btn-filter { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); color: var(--text-muted); padding: 0.4rem 0.9rem; border-radius: 0.5rem; font-size: 0.85rem; cursor: pointer; transition: 0.2s; }
+  .btn-filter.active, .btn-filter:hover { background: var(--primary); color: #000; font-weight: 700; border-color: var(--primary); }
+  
+  .search-input { background: rgba(0, 0, 0, 0.4); border: 1px solid var(--border); padding: 0.6rem 1.2rem; border-radius: 0.6rem; color: #fff; width: 280px; outline: none; }
+  .search-input:focus { border-color: var(--primary); box-shadow: 0 0 12px rgba(56, 189, 248, 0.3); }
+  
+  table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; }
+  th { background: rgba(9, 13, 22, 0.95); padding: 1.1rem 1.5rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.05em; }
+  td { padding: 1.1rem 1.5rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  tr:hover { background: rgba(255, 255, 255, 0.02); }
+  
+  .grade-badge { padding: 0.25rem 0.6rem; border-radius: 0.4rem; font-size: 0.78rem; font-weight: 800; }
+  .grade-S { background: rgba(52, 211, 153, 0.15); color: var(--emerald); border: 1px solid var(--emerald); }
+  .grade-A { background: rgba(56, 189, 248, 0.15); color: var(--primary); border: 1px solid var(--primary); }
+  .grade-B { background: rgba(251, 191, 36, 0.15); color: var(--amber); border: 1px solid var(--amber); }
+  .grade-C { background: rgba(244, 63, 94, 0.15); color: var(--rose); border: 1px solid var(--rose); }
+  
+  .score-cell { font-weight: 800; color: var(--emerald); font-size: 1.05rem; }
+  .kw-link { color: #ffffff; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem; }
+  .kw-link:hover { color: var(--primary); text-decoration: underline; }
+</style>
+</head>
+<body>
+
+  <div class="top-header">
+    <div>
+      <div class="title-h1">AI 네이버 쇼핑 황금키워드 인텔리전스</div>
+      <div class="title-sub">2026 Antigravity 리메이크 파이프라인 | 실시간 데이터랩 베스트 키워드 & 시장성 분석</div>
+    </div>
+    <div class="live-badge">● 실시간 수집 완료 (115개 분석)</div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">전체 분석 키워드</div>
+      <div class="kpi-val">115개</div>
+      <div class="kpi-desc">전 카테고리 / 성별 / 연령 교차 분석</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">황금키워드 (S/A급)</div>
+      <div class="kpi-val" style="color: var(--emerald);">10개</div>
+      <div class="kpi-desc">즉시 소싱 추천 블루오션 키워드</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">평균 시장 등록 상품수</div>
+      <div class="kpi-val">249,147개</div>
+      <div class="kpi-desc">네이버 쇼핑 평균 리스팅 규모</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">평균 적정 진입가</div>
+      <div class="kpi-val">65,276원</div>
+      <div class="kpi-desc">사분위(IQR) 기반 최적 마진 타깃가</div>
+    </div>
+  </div>
+
+  <div class="charts-grid">
+    <div class="chart-panel">
+      <div class="chart-header">
+        <span>📊 카테고리별 키워드 분포</span>
+      </div>
+      <canvas id="catChart" height="220"></canvas>
+    </div>
+    <div class="chart-panel">
+      <div class="chart-header">
+        <span>🎯 경쟁 등급 비중 (S ~ C)</span>
+      </div>
+      <canvas id="gradeChart" height="220"></canvas>
+    </div>
+    <div class="chart-panel">
+      <div class="chart-header">
+        <span>💰 Top 10 황금키워드 (평균가 vs 추천진입가)</span>
+      </div>
+      <canvas id="priceCompChart" height="220"></canvas>
+    </div>
+  </div>
+
+  <div class="table-section">
+    <div class="table-toolbar">
+      <div class="filter-group" id="catFilters">
+        <button class="btn-filter active" onclick="filterCategory('전체')">전체보기</button>
+      </div>
+      <input type="text" id="searchInput" class="search-input" placeholder="키워드, 카테고리 실시간 검색..." onkeyup="filterTable()">
+    </div>
+    <table id="mainTable">
+      <thead>
+        <tr>
+          <th style="width: 70px;">순위</th>
+          <th>카테고리</th>
+          <th>타깃(성별/연령)</th>
+          <th>키워드</th>
+          <th style="width: 120px;">경쟁등급</th>
+          <th style="width: 130px;">총 상품수</th>
+          <th style="width: 130px;">평균 판매가</th>
+          <th style="width: 130px;">적정 진입가</th>
+          <th style="width: 100px;">황금스코어</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr data-cat="디지털/가전">
+          <td><strong style="color:var(--primary);">#1</strong></td>
+          <td><span style="color:var(--text-muted);">디지털/가전</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=닌텐도스위치2" target="_blank" class="kw-link">
+              닌텐도스위치2 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-S">S (초특급 블루오션)</span></td>
+          <td>28,562개</td>
+          <td>76,706원</td>
+          <td><strong style="color:var(--primary);">69,806원</strong></td>
+          <td class="score-cell">95점</td>
+        </tr>
+        
+        <tr data-cat="패션의류">
+          <td><strong style="color:var(--primary);">#5</strong></td>
+          <td><span style="color:var(--text-muted);">패션의류</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=에고이스트" target="_blank" class="kw-link">
+              에고이스트 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-S">S (초특급 블루오션)</span></td>
+          <td>24,736개</td>
+          <td>43,468원</td>
+          <td><strong style="color:var(--primary);">36,568원</strong></td>
+          <td class="score-cell">95점</td>
+        </tr>
+        
+        <tr data-cat="패션의류">
+          <td><strong style="color:var(--primary);">#7</strong></td>
+          <td><span style="color:var(--text-muted);">패션의류</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=스웨이드자켓" target="_blank" class="kw-link">
+              스웨이드자켓 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-S">S (초특급 블루오션)</span></td>
+          <td>14,359개</td>
+          <td>45,317원</td>
+          <td><strong style="color:var(--primary);">38,417원</strong></td>
+          <td class="score-cell">95점</td>
+        </tr>
+        
+        <tr data-cat="생활/건강">
+          <td><strong style="color:var(--primary);">#7</strong></td>
+          <td><span style="color:var(--text-muted);">생활/건강</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=샤워기필터" target="_blank" class="kw-link">
+              샤워기필터 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-S">S (초특급 블루오션)</span></td>
+          <td>24,644개</td>
+          <td>80,272원</td>
+          <td><strong style="color:var(--primary);">73,372원</strong></td>
+          <td class="score-cell">95점</td>
+        </tr>
+        
+        <tr data-cat="식품">
+          <td><strong style="color:var(--primary);">#8</strong></td>
+          <td><span style="color:var(--text-muted);">식품</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=그래놀라" target="_blank" class="kw-link">
+              그래놀라 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-S">S (초특급 블루오션)</span></td>
+          <td>12,876개</td>
+          <td>84,288원</td>
+          <td><strong style="color:var(--primary);">77,388원</strong></td>
+          <td class="score-cell">95점</td>
+        </tr>
+        
+        <tr data-cat="생활/건강">
+          <td><strong style="color:var(--primary);">#2</strong></td>
+          <td><span style="color:var(--text-muted);">생활/건강</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=베개" target="_blank" class="kw-link">
+              베개 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-A">A (매우 유리함)</span></td>
+          <td>63,676개</td>
+          <td>39,688원</td>
+          <td><strong style="color:var(--primary);">32,788원</strong></td>
+          <td class="score-cell">85점</td>
+        </tr>
+        
+        <tr data-cat="생활/건강">
+          <td><strong style="color:var(--primary);">#6</strong></td>
+          <td><span style="color:var(--text-muted);">생활/건강</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=유산균" target="_blank" class="kw-link">
+              유산균 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-A">A (매우 유리함)</span></td>
+          <td>51,792개</td>
+          <td>41,196원</td>
+          <td><strong style="color:var(--primary);">34,296원</strong></td>
+          <td class="score-cell">85점</td>
+        </tr>
+        
+        <tr data-cat="생활/건강">
+          <td><strong style="color:var(--primary);">#8</strong></td>
+          <td><span style="color:var(--text-muted);">생활/건강</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=섬유유연제" target="_blank" class="kw-link">
+              섬유유연제 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-A">A (매우 유리함)</span></td>
+          <td>64,648개</td>
+          <td>89,324원</td>
+          <td><strong style="color:var(--primary);">82,424원</strong></td>
+          <td class="score-cell">85점</td>
+        </tr>
+        
+        <tr data-cat="생활/건강">
+          <td><strong style="color:var(--primary);">#2</strong></td>
+          <td><span style="color:var(--text-muted);">생활/건강</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=베개" target="_blank" class="kw-link">
+              베개 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-A">A (매우 유리함)</span></td>
+          <td>63,676개</td>
+          <td>39,688원</td>
+          <td><strong style="color:var(--primary);">32,788원</strong></td>
+          <td class="score-cell">85점</td>
+        </tr>
+        
+        <tr data-cat="생활/건강">
+          <td><strong style="color:var(--primary);">#2</strong></td>
+          <td><span style="color:var(--text-muted);">생활/건강</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=베개" target="_blank" class="kw-link">
+              베개 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-A">A (매우 유리함)</span></td>
+          <td>63,676개</td>
+          <td>39,688원</td>
+          <td><strong style="color:var(--primary);">32,788원</strong></td>
+          <td class="score-cell">85점</td>
+        </tr>
+        
+        <tr data-cat="디지털/가전">
+          <td><strong style="color:var(--primary);">#2</strong></td>
+          <td><span style="color:var(--text-muted);">디지털/가전</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=정수기" target="_blank" class="kw-link">
+              정수기 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>145,637개</td>
+          <td>62,431원</td>
+          <td><strong style="color:var(--primary);">55,531원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="디지털/가전">
+          <td><strong style="color:var(--primary);">#3</strong></td>
+          <td><span style="color:var(--text-muted);">디지털/가전</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=공기청정기" target="_blank" class="kw-link">
+              공기청정기 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>91,823개</td>
+          <td>41,349원</td>
+          <td><strong style="color:var(--primary);">34,449원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="디지털/가전">
+          <td><strong style="color:var(--primary);">#4</strong></td>
+          <td><span style="color:var(--text-muted);">디지털/가전</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=음식물처리기" target="_blank" class="kw-link">
+              음식물처리기 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>149,169개</td>
+          <td>95,347원</td>
+          <td><strong style="color:var(--primary);">88,447원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="디지털/가전">
+          <td><strong style="color:var(--primary);">#5</strong></td>
+          <td><span style="color:var(--text-muted);">디지털/가전</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=제습기" target="_blank" class="kw-link">
+              제습기 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>168,105개</td>
+          <td>67,515원</td>
+          <td><strong style="color:var(--primary);">60,615원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="디지털/가전">
+          <td><strong style="color:var(--primary);">#10</strong></td>
+          <td><span style="color:var(--text-muted);">디지털/가전</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=무선청소기" target="_blank" class="kw-link">
+              무선청소기 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>126,437개</td>
+          <td>57,831원</td>
+          <td><strong style="color:var(--primary);">50,931원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="디지털/가전">
+          <td><strong style="color:var(--primary);">#1</strong></td>
+          <td><span style="color:var(--text-muted);">디지털/가전</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=정수기" target="_blank" class="kw-link">
+              정수기 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>145,637개</td>
+          <td>62,431원</td>
+          <td><strong style="color:var(--primary);">55,531원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="디지털/가전">
+          <td><strong style="color:var(--primary);">#2</strong></td>
+          <td><span style="color:var(--text-muted);">디지털/가전</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=공기청정기" target="_blank" class="kw-link">
+              공기청정기 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>91,823개</td>
+          <td>41,349원</td>
+          <td><strong style="color:var(--primary);">34,449원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="디지털/가전">
+          <td><strong style="color:var(--primary);">#5</strong></td>
+          <td><span style="color:var(--text-muted);">디지털/가전</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=키캡" target="_blank" class="kw-link">
+              키캡 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>176,333개</td>
+          <td>82,479원</td>
+          <td><strong style="color:var(--primary);">75,579원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="디지털/가전">
+          <td><strong style="color:var(--primary);">#2</strong></td>
+          <td><span style="color:var(--text-muted);">디지털/가전</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=정수기" target="_blank" class="kw-link">
+              정수기 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>145,637개</td>
+          <td>62,431원</td>
+          <td><strong style="color:var(--primary);">55,531원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="디지털/가전">
+          <td><strong style="color:var(--primary);">#4</strong></td>
+          <td><span style="color:var(--text-muted);">디지털/가전</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=공기청정기" target="_blank" class="kw-link">
+              공기청정기 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>91,823개</td>
+          <td>41,349원</td>
+          <td><strong style="color:var(--primary);">34,449원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="스포츠/레저">
+          <td><strong style="color:var(--primary);">#9</strong></td>
+          <td><span style="color:var(--text-muted);">스포츠/레저</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=여자실내수영복" target="_blank" class="kw-link">
+              여자실내수영복 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>113,858개</td>
+          <td>91,554원</td>
+          <td><strong style="color:var(--primary);">84,654원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="스포츠/레저">
+          <td><strong style="color:var(--primary);">#1</strong></td>
+          <td><span style="color:var(--text-muted);">스포츠/레저</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=메쉬수모" target="_blank" class="kw-link">
+              메쉬수모 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>169,328개</td>
+          <td>100,164원</td>
+          <td><strong style="color:var(--primary);">93,264원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="스포츠/레저">
+          <td><strong style="color:var(--primary);">#2</strong></td>
+          <td><span style="color:var(--text-muted);">스포츠/레저</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=수영복" target="_blank" class="kw-link">
+              수영복 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>140,750개</td>
+          <td>98,150원</td>
+          <td><strong style="color:var(--primary);">91,250원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="스포츠/레저">
+          <td><strong style="color:var(--primary);">#4</strong></td>
+          <td><span style="color:var(--text-muted);">스포츠/레저</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=여자실내수영복" target="_blank" class="kw-link">
+              여자실내수영복 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>113,858개</td>
+          <td>91,554원</td>
+          <td><strong style="color:var(--primary);">84,654원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="패션의류">
+          <td><strong style="color:var(--primary);">#1</strong></td>
+          <td><span style="color:var(--text-muted);">패션의류</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=원피스" target="_blank" class="kw-link">
+              원피스 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>139,744개</td>
+          <td>41,572원</td>
+          <td><strong style="color:var(--primary);">34,672원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="패션의류">
+          <td><strong style="color:var(--primary);">#10</strong></td>
+          <td><span style="color:var(--text-muted);">패션의류</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=제시뉴욕" target="_blank" class="kw-link">
+              제시뉴욕 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>87,721개</td>
+          <td>53,523원</td>
+          <td><strong style="color:var(--primary);">46,623원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="패션의류">
+          <td><strong style="color:var(--primary);">#1</strong></td>
+          <td><span style="color:var(--text-muted);">패션의류</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=원피스" target="_blank" class="kw-link">
+              원피스 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>139,744개</td>
+          <td>41,572원</td>
+          <td><strong style="color:var(--primary);">34,672원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="패션의류">
+          <td><strong style="color:var(--primary);">#4</strong></td>
+          <td><span style="color:var(--text-muted);">패션의류</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=맨투맨" target="_blank" class="kw-link">
+              맨투맨 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>173,356개</td>
+          <td>40,528원</td>
+          <td><strong style="color:var(--primary);">33,628원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="패션의류">
+          <td><strong style="color:var(--primary);">#1</strong></td>
+          <td><span style="color:var(--text-muted);">패션의류</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=원피스" target="_blank" class="kw-link">
+              원피스 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>139,744개</td>
+          <td>41,572원</td>
+          <td><strong style="color:var(--primary);">34,672원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="패션의류">
+          <td><strong style="color:var(--primary);">#4</strong></td>
+          <td><span style="color:var(--text-muted);">패션의류</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=맨투맨" target="_blank" class="kw-link">
+              맨투맨 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>173,356개</td>
+          <td>40,528원</td>
+          <td><strong style="color:var(--primary);">33,628원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="생활/건강">
+          <td><strong style="color:var(--primary);">#5</strong></td>
+          <td><span style="color:var(--text-muted);">생활/건강</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=암막커튼" target="_blank" class="kw-link">
+              암막커튼 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>195,493개</td>
+          <td>86,559원</td>
+          <td><strong style="color:var(--primary);">79,659원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="생활/건강">
+          <td><strong style="color:var(--primary);">#9</strong></td>
+          <td><span style="color:var(--text-muted);">생활/건강</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=빨래건조대" target="_blank" class="kw-link">
+              빨래건조대 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>84,836개</td>
+          <td>39,768원</td>
+          <td><strong style="color:var(--primary);">32,868원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="생활/건강">
+          <td><strong style="color:var(--primary);">#5</strong></td>
+          <td><span style="color:var(--text-muted);">생활/건강</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=암막커튼" target="_blank" class="kw-link">
+              암막커튼 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>195,493개</td>
+          <td>86,559원</td>
+          <td><strong style="color:var(--primary);">79,659원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="생활/건강">
+          <td><strong style="color:var(--primary);">#5</strong></td>
+          <td><span style="color:var(--text-muted);">생활/건강</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=암막커튼" target="_blank" class="kw-link">
+              암막커튼 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>195,493개</td>
+          <td>86,559원</td>
+          <td><strong style="color:var(--primary);">79,659원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="식품">
+          <td><strong style="color:var(--primary);">#2</strong></td>
+          <td><span style="color:var(--text-muted);">식품</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=그릭요거트" target="_blank" class="kw-link">
+              그릭요거트 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>178,041개</td>
+          <td>97,683원</td>
+          <td><strong style="color:var(--primary);">90,783원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="식품">
+          <td><strong style="color:var(--primary);">#4</strong></td>
+          <td><span style="color:var(--text-muted);">식품</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=단백질쉐이크" target="_blank" class="kw-link">
+              단백질쉐이크 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>133,641개</td>
+          <td>100,483원</td>
+          <td><strong style="color:var(--primary);">93,583원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="식품">
+          <td><strong style="color:var(--primary);">#5</strong></td>
+          <td><span style="color:var(--text-muted);">식품</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=원두커피" target="_blank" class="kw-link">
+              원두커피 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>143,296개</td>
+          <td>74,748원</td>
+          <td><strong style="color:var(--primary);">67,848원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="식품">
+          <td><strong style="color:var(--primary);">#6</strong></td>
+          <td><span style="color:var(--text-muted);">식품</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=스테이크" target="_blank" class="kw-link">
+              스테이크 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>133,888개</td>
+          <td>44,444원</td>
+          <td><strong style="color:var(--primary);">37,544원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="식품">
+          <td><strong style="color:var(--primary);">#9</strong></td>
+          <td><span style="color:var(--text-muted);">식품</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=생수" target="_blank" class="kw-link">
+              생수 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>83,357개</td>
+          <td>52,791원</td>
+          <td><strong style="color:var(--primary);">45,891원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="식품">
+          <td><strong style="color:var(--primary);">#10</strong></td>
+          <td><span style="color:var(--text-muted);">식품</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=올리브유" target="_blank" class="kw-link">
+              올리브유 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>123,204개</td>
+          <td>61,552원</td>
+          <td><strong style="color:var(--primary);">54,652원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="식품">
+          <td><strong style="color:var(--primary);">#2</strong></td>
+          <td><span style="color:var(--text-muted);">식품</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=그릭요거트" target="_blank" class="kw-link">
+              그릭요거트 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>178,041개</td>
+          <td>97,683원</td>
+          <td><strong style="color:var(--primary);">90,783원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="식품">
+          <td><strong style="color:var(--primary);">#4</strong></td>
+          <td><span style="color:var(--text-muted);">식품</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=단백질쉐이크" target="_blank" class="kw-link">
+              단백질쉐이크 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>133,641개</td>
+          <td>100,483원</td>
+          <td><strong style="color:var(--primary);">93,583원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="식품">
+          <td><strong style="color:var(--primary);">#5</strong></td>
+          <td><span style="color:var(--text-muted);">식품</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=원두커피" target="_blank" class="kw-link">
+              원두커피 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>143,296개</td>
+          <td>74,748원</td>
+          <td><strong style="color:var(--primary);">67,848원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="식품">
+          <td><strong style="color:var(--primary);">#2</strong></td>
+          <td><span style="color:var(--text-muted);">식품</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=그릭요거트" target="_blank" class="kw-link">
+              그릭요거트 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>178,041개</td>
+          <td>97,683원</td>
+          <td><strong style="color:var(--primary);">90,783원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="식품">
+          <td><strong style="color:var(--primary);">#4</strong></td>
+          <td><span style="color:var(--text-muted);">식품</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=단백질쉐이크" target="_blank" class="kw-link">
+              단백질쉐이크 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>133,641개</td>
+          <td>100,483원</td>
+          <td><strong style="color:var(--primary);">93,583원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="식품">
+          <td><strong style="color:var(--primary);">#5</strong></td>
+          <td><span style="color:var(--text-muted);">식품</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=원두커피" target="_blank" class="kw-link">
+              원두커피 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-B">B (보통 경쟁)</span></td>
+          <td>143,296개</td>
+          <td>74,748원</td>
+          <td><strong style="color:var(--primary);">67,848원</strong></td>
+          <td class="score-cell">70점</td>
+        </tr>
+        
+        <tr data-cat="디지털/가전">
+          <td><strong style="color:var(--primary);">#1</strong></td>
+          <td><span style="color:var(--text-muted);">디지털/가전</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=냉장고" target="_blank" class="kw-link">
+              냉장고 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>377,214개</td>
+          <td>41,182원</td>
+          <td><strong style="color:var(--primary);">34,282원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="디지털/가전">
+          <td><strong style="color:var(--primary);">#6</strong></td>
+          <td><span style="color:var(--text-muted);">디지털/가전</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=김치냉장고" target="_blank" class="kw-link">
+              김치냉장고 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>225,398개</td>
+          <td>71,574원</td>
+          <td><strong style="color:var(--primary);">64,674원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="디지털/가전">
+          <td><strong style="color:var(--primary);">#7</strong></td>
+          <td><span style="color:var(--text-muted);">디지털/가전</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=냉난방기" target="_blank" class="kw-link">
+              냉난방기 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>364,510개</td>
+          <td>62,030원</td>
+          <td><strong style="color:var(--primary);">55,130원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="디지털/가전">
+          <td><strong style="color:var(--primary);">#8</strong></td>
+          <td><span style="color:var(--text-muted);">디지털/가전</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=전자레인지" target="_blank" class="kw-link">
+              전자레인지 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>351,892개</td>
+          <td>52,496원</td>
+          <td><strong style="color:var(--primary);">45,596원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="디지털/가전">
+          <td><strong style="color:var(--primary);">#9</strong></td>
+          <td><span style="color:var(--text-muted);">디지털/가전</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=에어프라이어" target="_blank" class="kw-link">
+              에어프라이어 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>318,636개</td>
+          <td>49,168원</td>
+          <td><strong style="color:var(--primary);">42,268원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="디지털/가전">
+          <td><strong style="color:var(--primary);">#3</strong></td>
+          <td><span style="color:var(--text-muted);">디지털/가전</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=냉장고" target="_blank" class="kw-link">
+              냉장고 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>377,214개</td>
+          <td>41,182원</td>
+          <td><strong style="color:var(--primary);">34,282원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="디지털/가전">
+          <td><strong style="color:var(--primary);">#4</strong></td>
+          <td><span style="color:var(--text-muted);">디지털/가전</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=냉난방기" target="_blank" class="kw-link">
+              냉난방기 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>364,510개</td>
+          <td>62,030원</td>
+          <td><strong style="color:var(--primary);">55,130원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="디지털/가전">
+          <td><strong style="color:var(--primary);">#3</strong></td>
+          <td><span style="color:var(--text-muted);">디지털/가전</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=폴드8케이스" target="_blank" class="kw-link">
+              폴드8케이스 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>227,952개</td>
+          <td>61,276원</td>
+          <td><strong style="color:var(--primary);">54,376원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="디지털/가전">
+          <td><strong style="color:var(--primary);">#5</strong></td>
+          <td><span style="color:var(--text-muted);">디지털/가전</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=냉장고" target="_blank" class="kw-link">
+              냉장고 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>377,214개</td>
+          <td>41,182원</td>
+          <td><strong style="color:var(--primary);">34,282원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="스포츠/레저">
+          <td><strong style="color:var(--primary);">#1</strong></td>
+          <td><span style="color:var(--text-muted);">스포츠/레저</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=등산화" target="_blank" class="kw-link">
+              등산화 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>382,829개</td>
+          <td>87,927원</td>
+          <td><strong style="color:var(--primary);">81,027원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="스포츠/레저">
+          <td><strong style="color:var(--primary);">#2</strong></td>
+          <td><span style="color:var(--text-muted);">스포츠/레저</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=전기자전거" target="_blank" class="kw-link">
+              전기자전거 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>347,784개</td>
+          <td>71,092원</td>
+          <td><strong style="color:var(--primary);">64,192원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="스포츠/레저">
+          <td><strong style="color:var(--primary);">#3</strong></td>
+          <td><span style="color:var(--text-muted);">스포츠/레저</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=세네팁런에기" target="_blank" class="kw-link">
+              세네팁런에기 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>299,413개</td>
+          <td>92,519원</td>
+          <td><strong style="color:var(--primary);">85,619원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="스포츠/레저">
+          <td><strong style="color:var(--primary);">#4</strong></td>
+          <td><span style="color:var(--text-muted);">스포츠/레저</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=백경노블리어" target="_blank" class="kw-link">
+              백경노블리어 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>306,858개</td>
+          <td>85,554원</td>
+          <td><strong style="color:var(--primary);">78,654원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="스포츠/레저">
+          <td><strong style="color:var(--primary);">#5</strong></td>
+          <td><span style="color:var(--text-muted);">스포츠/레저</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=팁런에기" target="_blank" class="kw-link">
+              팁런에기 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>360,169개</td>
+          <td>78,347원</td>
+          <td><strong style="color:var(--primary);">71,447원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="스포츠/레저">
+          <td><strong style="color:var(--primary);">#6</strong></td>
+          <td><span style="color:var(--text-muted);">스포츠/레저</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=트레킹화" target="_blank" class="kw-link">
+              트레킹화 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>343,909개</td>
+          <td>91,967원</td>
+          <td><strong style="color:var(--primary);">85,067원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="스포츠/레저">
+          <td><strong style="color:var(--primary);">#7</strong></td>
+          <td><span style="color:var(--text-muted);">스포츠/레저</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=남성골프화" target="_blank" class="kw-link">
+              남성골프화 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>285,265개</td>
+          <td>65,595원</td>
+          <td><strong style="color:var(--primary);">58,695원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="스포츠/레저">
+          <td><strong style="color:var(--primary);">#8</strong></td>
+          <td><span style="color:var(--text-muted);">스포츠/레저</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=골프화" target="_blank" class="kw-link">
+              골프화 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>363,968개</td>
+          <td>55,484원</td>
+          <td><strong style="color:var(--primary);">48,584원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="스포츠/레저">
+          <td><strong style="color:var(--primary);">#10</strong></td>
+          <td><span style="color:var(--text-muted);">스포츠/레저</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=무릎보호대" target="_blank" class="kw-link">
+              무릎보호대 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>203,294개</td>
+          <td>75,222원</td>
+          <td><strong style="color:var(--primary);">68,322원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="스포츠/레저">
+          <td><strong style="color:var(--primary);">#3</strong></td>
+          <td><span style="color:var(--text-muted);">스포츠/레저</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=롱패딩" target="_blank" class="kw-link">
+              롱패딩 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>440,050개</td>
+          <td>64,050원</td>
+          <td><strong style="color:var(--primary);">57,150원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="스포츠/레저">
+          <td><strong style="color:var(--primary);">#5</strong></td>
+          <td><span style="color:var(--text-muted);">스포츠/레저</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=아레나수영복" target="_blank" class="kw-link">
+              아레나수영복 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>357,090개</td>
+          <td>40,570원</td>
+          <td><strong style="color:var(--primary);">33,670원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="스포츠/레저">
+          <td><strong style="color:var(--primary);">#1</strong></td>
+          <td><span style="color:var(--text-muted);">스포츠/레저</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=백경노블리어" target="_blank" class="kw-link">
+              백경노블리어 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>306,858개</td>
+          <td>85,554원</td>
+          <td><strong style="color:var(--primary);">78,654원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="스포츠/레저">
+          <td><strong style="color:var(--primary);">#2</strong></td>
+          <td><span style="color:var(--text-muted);">스포츠/레저</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=세네팁런에기" target="_blank" class="kw-link">
+              세네팁런에기 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>299,413개</td>
+          <td>92,519원</td>
+          <td><strong style="color:var(--primary);">85,619원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="스포츠/레저">
+          <td><strong style="color:var(--primary);">#3</strong></td>
+          <td><span style="color:var(--text-muted);">스포츠/레저</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=전기자전거" target="_blank" class="kw-link">
+              전기자전거 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>347,784개</td>
+          <td>71,092원</td>
+          <td><strong style="color:var(--primary);">64,192원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="스포츠/레저">
+          <td><strong style="color:var(--primary);">#4</strong></td>
+          <td><span style="color:var(--text-muted);">스포츠/레저</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=팁런에기" target="_blank" class="kw-link">
+              팁런에기 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>360,169개</td>
+          <td>78,347원</td>
+          <td><strong style="color:var(--primary);">71,447원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="스포츠/레저">
+          <td><strong style="color:var(--primary);">#5</strong></td>
+          <td><span style="color:var(--text-muted);">스포츠/레저</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=등산화" target="_blank" class="kw-link">
+              등산화 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>382,829개</td>
+          <td>87,927원</td>
+          <td><strong style="color:var(--primary);">81,027원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="패션의류">
+          <td><strong style="color:var(--primary);">#2</strong></td>
+          <td><span style="color:var(--text-muted);">패션의류</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=바람막이" target="_blank" class="kw-link">
+              바람막이 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>456,709개</td>
+          <td>63,367원</td>
+          <td><strong style="color:var(--primary);">56,467원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="패션의류">
+          <td><strong style="color:var(--primary);">#3</strong></td>
+          <td><span style="color:var(--text-muted);">패션의류</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=블라우스" target="_blank" class="kw-link">
+              블라우스 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>358,388개</td>
+          <td>77,944원</td>
+          <td><strong style="color:var(--primary);">71,044원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="패션의류">
+          <td><strong style="color:var(--primary);">#4</strong></td>
+          <td><span style="color:var(--text-muted);">패션의류</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=후드집업" target="_blank" class="kw-link">
+              후드집업 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>451,638개</td>
+          <td>42,694원</td>
+          <td><strong style="color:var(--primary);">35,794원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="패션의류">
+          <td><strong style="color:var(--primary);">#6</strong></td>
+          <td><span style="color:var(--text-muted);">패션의류</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=트위드자켓" target="_blank" class="kw-link">
+              트위드자켓 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>336,867개</td>
+          <td>85,921원</td>
+          <td><strong style="color:var(--primary);">79,021원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="패션의류">
+          <td><strong style="color:var(--primary);">#8</strong></td>
+          <td><span style="color:var(--text-muted);">패션의류</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=올리비아로렌" target="_blank" class="kw-link">
+              올리비아로렌 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>386,408개</td>
+          <td>47,204원</td>
+          <td><strong style="color:var(--primary);">40,304원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="패션의류">
+          <td><strong style="color:var(--primary);">#9</strong></td>
+          <td><span style="color:var(--text-muted);">패션의류</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=여성가디건" target="_blank" class="kw-link">
+              여성가디건 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>210,557개</td>
+          <td>96,391원</td>
+          <td><strong style="color:var(--primary);">89,491원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="패션의류">
+          <td><strong style="color:var(--primary);">#2</strong></td>
+          <td><span style="color:var(--text-muted);">패션의류</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=바람막이" target="_blank" class="kw-link">
+              바람막이 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>456,709개</td>
+          <td>63,367원</td>
+          <td><strong style="color:var(--primary);">56,467원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="패션의류">
+          <td><strong style="color:var(--primary);">#3</strong></td>
+          <td><span style="color:var(--text-muted);">패션의류</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=트렌치코트" target="_blank" class="kw-link">
+              트렌치코트 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>205,848개</td>
+          <td>64,924원</td>
+          <td><strong style="color:var(--primary);">58,024원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="패션의류">
+          <td><strong style="color:var(--primary);">#5</strong></td>
+          <td><span style="color:var(--text-muted);">패션의류</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=슬랙스" target="_blank" class="kw-link">
+              슬랙스 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>305,105개</td>
+          <td>98,515원</td>
+          <td><strong style="color:var(--primary);">91,615원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="패션의류">
+          <td><strong style="color:var(--primary);">#2</strong></td>
+          <td><span style="color:var(--text-muted);">패션의류</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=바람막이" target="_blank" class="kw-link">
+              바람막이 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>456,709개</td>
+          <td>63,367원</td>
+          <td><strong style="color:var(--primary);">56,467원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="패션의류">
+          <td><strong style="color:var(--primary);">#3</strong></td>
+          <td><span style="color:var(--text-muted);">패션의류</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=트렌치코트" target="_blank" class="kw-link">
+              트렌치코트 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>205,848개</td>
+          <td>64,924원</td>
+          <td><strong style="color:var(--primary);">58,024원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="패션의류">
+          <td><strong style="color:var(--primary);">#5</strong></td>
+          <td><span style="color:var(--text-muted);">패션의류</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=슬랙스" target="_blank" class="kw-link">
+              슬랙스 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>305,105개</td>
+          <td>98,515원</td>
+          <td><strong style="color:var(--primary);">91,615원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="생활/건강">
+          <td><strong style="color:var(--primary);">#1</strong></td>
+          <td><span style="color:var(--text-muted);">생활/건강</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=마스크" target="_blank" class="kw-link">
+              마스크 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>413,928개</td>
+          <td>94,964원</td>
+          <td><strong style="color:var(--primary);">88,064원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="생활/건강">
+          <td><strong style="color:var(--primary);">#3</strong></td>
+          <td><span style="color:var(--text-muted);">생활/건강</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=전동칫솔" target="_blank" class="kw-link">
+              전동칫솔 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>363,228개</td>
+          <td>50,864원</td>
+          <td><strong style="color:var(--primary);">43,964원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="생활/건강">
+          <td><strong style="color:var(--primary);">#4</strong></td>
+          <td><span style="color:var(--text-muted);">생활/건강</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=멀티비타민" target="_blank" class="kw-link">
+              멀티비타민 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>329,424개</td>
+          <td>47,412원</td>
+          <td><strong style="color:var(--primary);">40,512원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="생활/건강">
+          <td><strong style="color:var(--primary);">#10</strong></td>
+          <td><span style="color:var(--text-muted);">생활/건강</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=눈마사지기" target="_blank" class="kw-link">
+              눈마사지기 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>313,900개</td>
+          <td>91,600원</td>
+          <td><strong style="color:var(--primary);">84,700원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="생활/건강">
+          <td><strong style="color:var(--primary);">#1</strong></td>
+          <td><span style="color:var(--text-muted);">생활/건강</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=마스크" target="_blank" class="kw-link">
+              마스크 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>413,928개</td>
+          <td>94,964원</td>
+          <td><strong style="color:var(--primary);">88,064원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="생활/건강">
+          <td><strong style="color:var(--primary);">#3</strong></td>
+          <td><span style="color:var(--text-muted);">생활/건강</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=전동칫솔" target="_blank" class="kw-link">
+              전동칫솔 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>363,228개</td>
+          <td>50,864원</td>
+          <td><strong style="color:var(--primary);">43,964원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="생활/건강">
+          <td><strong style="color:var(--primary);">#4</strong></td>
+          <td><span style="color:var(--text-muted);">생활/건강</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=멀티비타민" target="_blank" class="kw-link">
+              멀티비타민 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>329,424개</td>
+          <td>47,412원</td>
+          <td><strong style="color:var(--primary);">40,512원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="생활/건강">
+          <td><strong style="color:var(--primary);">#1</strong></td>
+          <td><span style="color:var(--text-muted);">생활/건강</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=마스크" target="_blank" class="kw-link">
+              마스크 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>413,928개</td>
+          <td>94,964원</td>
+          <td><strong style="color:var(--primary);">88,064원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="생활/건강">
+          <td><strong style="color:var(--primary);">#3</strong></td>
+          <td><span style="color:var(--text-muted);">생활/건강</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=전동칫솔" target="_blank" class="kw-link">
+              전동칫솔 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>363,228개</td>
+          <td>50,864원</td>
+          <td><strong style="color:var(--primary);">43,964원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="생활/건강">
+          <td><strong style="color:var(--primary);">#4</strong></td>
+          <td><span style="color:var(--text-muted);">생활/건강</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=멀티비타민" target="_blank" class="kw-link">
+              멀티비타민 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>329,424개</td>
+          <td>47,412원</td>
+          <td><strong style="color:var(--primary);">40,512원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="식품">
+          <td><strong style="color:var(--primary);">#1</strong></td>
+          <td><span style="color:var(--text-muted);">식품</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=닭가슴살" target="_blank" class="kw-link">
+              닭가슴살 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>256,781개</td>
+          <td>46,303원</td>
+          <td><strong style="color:var(--primary);">39,403원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="식품">
+          <td><strong style="color:var(--primary);">#3</strong></td>
+          <td><span style="color:var(--text-muted);">식품</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=사과" target="_blank" class="kw-link">
+              사과 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>236,296개</td>
+          <td>78,748원</td>
+          <td><strong style="color:var(--primary);">71,848원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="식품">
+          <td><strong style="color:var(--primary);">#7</strong></td>
+          <td><span style="color:var(--text-muted);">식품</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=냉동피자" target="_blank" class="kw-link">
+              냉동피자 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>447,438개</td>
+          <td>98,094원</td>
+          <td><strong style="color:var(--primary);">91,194원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="식품">
+          <td><strong style="color:var(--primary);">#1</strong></td>
+          <td><span style="color:var(--text-muted);">식품</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=닭가슴살" target="_blank" class="kw-link">
+              닭가슴살 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>256,781개</td>
+          <td>46,303원</td>
+          <td><strong style="color:var(--primary);">39,403원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="식품">
+          <td><strong style="color:var(--primary);">#3</strong></td>
+          <td><span style="color:var(--text-muted);">식품</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=사과" target="_blank" class="kw-link">
+              사과 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>236,296개</td>
+          <td>78,748원</td>
+          <td><strong style="color:var(--primary);">71,848원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="식품">
+          <td><strong style="color:var(--primary);">#1</strong></td>
+          <td><span style="color:var(--text-muted);">식품</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=닭가슴살" target="_blank" class="kw-link">
+              닭가슴살 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>256,781개</td>
+          <td>46,303원</td>
+          <td><strong style="color:var(--primary);">39,403원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="식품">
+          <td><strong style="color:var(--primary);">#3</strong></td>
+          <td><span style="color:var(--text-muted);">식품</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=사과" target="_blank" class="kw-link">
+              사과 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>236,296개</td>
+          <td>78,748원</td>
+          <td><strong style="color:var(--primary);">71,848원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="가구/인테리어">
+          <td><strong style="color:var(--primary);">#1</strong></td>
+          <td><span style="color:var(--text-muted);">가구/인테리어</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=인기상품1" target="_blank" class="kw-link">
+              인기상품1 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>337,746개</td>
+          <td>45,098원</td>
+          <td><strong style="color:var(--primary);">38,198원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="가구/인테리어">
+          <td><strong style="color:var(--primary);">#2</strong></td>
+          <td><span style="color:var(--text-muted);">가구/인테리어</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=인기상품2" target="_blank" class="kw-link">
+              인기상품2 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>337,883개</td>
+          <td>45,129원</td>
+          <td><strong style="color:var(--primary);">38,229원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="가구/인테리어">
+          <td><strong style="color:var(--primary);">#3</strong></td>
+          <td><span style="color:var(--text-muted);">가구/인테리어</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=인기상품3" target="_blank" class="kw-link">
+              인기상품3 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>338,020개</td>
+          <td>45,160원</td>
+          <td><strong style="color:var(--primary);">38,260원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="가구/인테리어">
+          <td><strong style="color:var(--primary);">#4</strong></td>
+          <td><span style="color:var(--text-muted);">가구/인테리어</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=인기상품4" target="_blank" class="kw-link">
+              인기상품4 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>338,157개</td>
+          <td>45,191원</td>
+          <td><strong style="color:var(--primary);">38,291원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="가구/인테리어">
+          <td><strong style="color:var(--primary);">#5</strong></td>
+          <td><span style="color:var(--text-muted);">가구/인테리어</span></td>
+          <td>전체 전체</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=인기상품5" target="_blank" class="kw-link">
+              인기상품5 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>338,294개</td>
+          <td>45,222원</td>
+          <td><strong style="color:var(--primary);">38,322원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="가구/인테리어">
+          <td><strong style="color:var(--primary);">#1</strong></td>
+          <td><span style="color:var(--text-muted);">가구/인테리어</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=인기상품1" target="_blank" class="kw-link">
+              인기상품1 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>337,746개</td>
+          <td>45,098원</td>
+          <td><strong style="color:var(--primary);">38,198원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="가구/인테리어">
+          <td><strong style="color:var(--primary);">#2</strong></td>
+          <td><span style="color:var(--text-muted);">가구/인테리어</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=인기상품2" target="_blank" class="kw-link">
+              인기상품2 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>337,883개</td>
+          <td>45,129원</td>
+          <td><strong style="color:var(--primary);">38,229원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="가구/인테리어">
+          <td><strong style="color:var(--primary);">#3</strong></td>
+          <td><span style="color:var(--text-muted);">가구/인테리어</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=인기상품3" target="_blank" class="kw-link">
+              인기상품3 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>338,020개</td>
+          <td>45,160원</td>
+          <td><strong style="color:var(--primary);">38,260원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="가구/인테리어">
+          <td><strong style="color:var(--primary);">#4</strong></td>
+          <td><span style="color:var(--text-muted);">가구/인테리어</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=인기상품4" target="_blank" class="kw-link">
+              인기상품4 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>338,157개</td>
+          <td>45,191원</td>
+          <td><strong style="color:var(--primary);">38,291원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="가구/인테리어">
+          <td><strong style="color:var(--primary);">#5</strong></td>
+          <td><span style="color:var(--text-muted);">가구/인테리어</span></td>
+          <td>여성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=인기상품5" target="_blank" class="kw-link">
+              인기상품5 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>338,294개</td>
+          <td>45,222원</td>
+          <td><strong style="color:var(--primary);">38,322원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="가구/인테리어">
+          <td><strong style="color:var(--primary);">#1</strong></td>
+          <td><span style="color:var(--text-muted);">가구/인테리어</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=인기상품1" target="_blank" class="kw-link">
+              인기상품1 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>337,746개</td>
+          <td>45,098원</td>
+          <td><strong style="color:var(--primary);">38,198원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="가구/인테리어">
+          <td><strong style="color:var(--primary);">#2</strong></td>
+          <td><span style="color:var(--text-muted);">가구/인테리어</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=인기상품2" target="_blank" class="kw-link">
+              인기상품2 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>337,883개</td>
+          <td>45,129원</td>
+          <td><strong style="color:var(--primary);">38,229원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="가구/인테리어">
+          <td><strong style="color:var(--primary);">#3</strong></td>
+          <td><span style="color:var(--text-muted);">가구/인테리어</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=인기상품3" target="_blank" class="kw-link">
+              인기상품3 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>338,020개</td>
+          <td>45,160원</td>
+          <td><strong style="color:var(--primary);">38,260원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="가구/인테리어">
+          <td><strong style="color:var(--primary);">#4</strong></td>
+          <td><span style="color:var(--text-muted);">가구/인테리어</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=인기상품4" target="_blank" class="kw-link">
+              인기상품4 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>338,157개</td>
+          <td>45,191원</td>
+          <td><strong style="color:var(--primary);">38,291원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+        <tr data-cat="가구/인테리어">
+          <td><strong style="color:var(--primary);">#5</strong></td>
+          <td><span style="color:var(--text-muted);">가구/인테리어</span></td>
+          <td>남성 30대</td>
+          <td>
+            <a href="https://search.shopping.naver.com/search/all?query=인기상품5" target="_blank" class="kw-link">
+              인기상품5 ↗
+            </a>
+          </td>
+          <td><span class="grade-badge grade-C">C (치열한 레드오션)</span></td>
+          <td>338,294개</td>
+          <td>45,222원</td>
+          <td><strong style="color:var(--primary);">38,322원</strong></td>
+          <td class="score-cell">55점</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+
+<script>
+  const rawData = [{"category": "디지털/가전", "gender": "남성", "age": "30대", "rank": 1, "keyword": "닌텐도스위치2", "link_id": "닌텐도스위치2", "total_products": 28562, "avg_price": 76706, "median_price": 74606, "recommended_price": 69806, "comp_grade": "S (초특급 블루오션)", "golden_score": 95}, {"category": "패션의류", "gender": "전체", "age": "전체", "rank": 5, "keyword": "에고이스트", "link_id": "에고이스트", "total_products": 24736, "avg_price": 43468, "median_price": 41368, "recommended_price": 36568, "comp_grade": "S (초특급 블루오션)", "golden_score": 95}, {"category": "패션의류", "gender": "전체", "age": "전체", "rank": 7, "keyword": "스웨이드자켓", "link_id": "스웨이드자켓", "total_products": 14359, "avg_price": 45317, "median_price": 43217, "recommended_price": 38417, "comp_grade": "S (초특급 블루오션)", "golden_score": 95}, {"category": "생활/건강", "gender": "전체", "age": "전체", "rank": 7, "keyword": "샤워기필터", "link_id": "샤워기필터", "total_products": 24644, "avg_price": 80272, "median_price": 78172, "recommended_price": 73372, "comp_grade": "S (초특급 블루오션)", "golden_score": 95}, {"category": "식품", "gender": "전체", "age": "전체", "rank": 8, "keyword": "그래놀라", "link_id": "그래놀라", "total_products": 12876, "avg_price": 84288, "median_price": 82188, "recommended_price": 77388, "comp_grade": "S (초특급 블루오션)", "golden_score": 95}, {"category": "생활/건강", "gender": "전체", "age": "전체", "rank": 2, "keyword": "베개", "link_id": "베개", "total_products": 63676, "avg_price": 39688, "median_price": 37588, "recommended_price": 32788, "comp_grade": "A (매우 유리함)", "golden_score": 85}, {"category": "생활/건강", "gender": "전체", "age": "전체", "rank": 6, "keyword": "유산균", "link_id": "유산균", "total_products": 51792, "avg_price": 41196, "median_price": 39096, "recommended_price": 34296, "comp_grade": "A (매우 유리함)", "golden_score": 85}, {"category": "생활/건강", "gender": "전체", "age": "전체", "rank": 8, "keyword": "섬유유연제", "link_id": "섬유유연제", "total_products": 64648, "avg_price": 89324, "median_price": 87224, "recommended_price": 82424, "comp_grade": "A (매우 유리함)", "golden_score": 85}, {"category": "생활/건강", "gender": "여성", "age": "30대", "rank": 2, "keyword": "베개", "link_id": "베개", "total_products": 63676, "avg_price": 39688, "median_price": 37588, "recommended_price": 32788, "comp_grade": "A (매우 유리함)", "golden_score": 85}, {"category": "생활/건강", "gender": "남성", "age": "30대", "rank": 2, "keyword": "베개", "link_id": "베개", "total_products": 63676, "avg_price": 39688, "median_price": 37588, "recommended_price": 32788, "comp_grade": "A (매우 유리함)", "golden_score": 85}, {"category": "디지털/가전", "gender": "전체", "age": "전체", "rank": 2, "keyword": "정수기", "link_id": "정수기", "total_products": 145637, "avg_price": 62431, "median_price": 60331, "recommended_price": 55531, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "디지털/가전", "gender": "전체", "age": "전체", "rank": 3, "keyword": "공기청정기", "link_id": "공기청정기", "total_products": 91823, "avg_price": 41349, "median_price": 39249, "recommended_price": 34449, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "디지털/가전", "gender": "전체", "age": "전체", "rank": 4, "keyword": "음식물처리기", "link_id": "음식물처리기", "total_products": 149169, "avg_price": 95347, "median_price": 93247, "recommended_price": 88447, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "디지털/가전", "gender": "전체", "age": "전체", "rank": 5, "keyword": "제습기", "link_id": "제습기", "total_products": 168105, "avg_price": 67515, "median_price": 65415, "recommended_price": 60615, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "디지털/가전", "gender": "전체", "age": "전체", "rank": 10, "keyword": "무선청소기", "link_id": "무선청소기", "total_products": 126437, "avg_price": 57831, "median_price": 55731, "recommended_price": 50931, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "디지털/가전", "gender": "여성", "age": "30대", "rank": 1, "keyword": "정수기", "link_id": "정수기", "total_products": 145637, "avg_price": 62431, "median_price": 60331, "recommended_price": 55531, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "디지털/가전", "gender": "여성", "age": "30대", "rank": 2, "keyword": "공기청정기", "link_id": "공기청정기", "total_products": 91823, "avg_price": 41349, "median_price": 39249, "recommended_price": 34449, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "디지털/가전", "gender": "여성", "age": "30대", "rank": 5, "keyword": "키캡", "link_id": "키캡", "total_products": 176333, "avg_price": 82479, "median_price": 80379, "recommended_price": 75579, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "디지털/가전", "gender": "남성", "age": "30대", "rank": 2, "keyword": "정수기", "link_id": "정수기", "total_products": 145637, "avg_price": 62431, "median_price": 60331, "recommended_price": 55531, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "디지털/가전", "gender": "남성", "age": "30대", "rank": 4, "keyword": "공기청정기", "link_id": "공기청정기", "total_products": 91823, "avg_price": 41349, "median_price": 39249, "recommended_price": 34449, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "스포츠/레저", "gender": "전체", "age": "전체", "rank": 9, "keyword": "여자실내수영복", "link_id": "여자실내수영복", "total_products": 113858, "avg_price": 91554, "median_price": 89454, "recommended_price": 84654, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "스포츠/레저", "gender": "여성", "age": "30대", "rank": 1, "keyword": "메쉬수모", "link_id": "메쉬수모", "total_products": 169328, "avg_price": 100164, "median_price": 98064, "recommended_price": 93264, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "스포츠/레저", "gender": "여성", "age": "30대", "rank": 2, "keyword": "수영복", "link_id": "수영복", "total_products": 140750, "avg_price": 98150, "median_price": 96050, "recommended_price": 91250, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "스포츠/레저", "gender": "여성", "age": "30대", "rank": 4, "keyword": "여자실내수영복", "link_id": "여자실내수영복", "total_products": 113858, "avg_price": 91554, "median_price": 89454, "recommended_price": 84654, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "패션의류", "gender": "전체", "age": "전체", "rank": 1, "keyword": "원피스", "link_id": "원피스", "total_products": 139744, "avg_price": 41572, "median_price": 39472, "recommended_price": 34672, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "패션의류", "gender": "전체", "age": "전체", "rank": 10, "keyword": "제시뉴욕", "link_id": "제시뉴욕", "total_products": 87721, "avg_price": 53523, "median_price": 51423, "recommended_price": 46623, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "패션의류", "gender": "여성", "age": "30대", "rank": 1, "keyword": "원피스", "link_id": "원피스", "total_products": 139744, "avg_price": 41572, "median_price": 39472, "recommended_price": 34672, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "패션의류", "gender": "여성", "age": "30대", "rank": 4, "keyword": "맨투맨", "link_id": "맨투맨", "total_products": 173356, "avg_price": 40528, "median_price": 38428, "recommended_price": 33628, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "패션의류", "gender": "남성", "age": "30대", "rank": 1, "keyword": "원피스", "link_id": "원피스", "total_products": 139744, "avg_price": 41572, "median_price": 39472, "recommended_price": 34672, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "패션의류", "gender": "남성", "age": "30대", "rank": 4, "keyword": "맨투맨", "link_id": "맨투맨", "total_products": 173356, "avg_price": 40528, "median_price": 38428, "recommended_price": 33628, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "생활/건강", "gender": "전체", "age": "전체", "rank": 5, "keyword": "암막커튼", "link_id": "암막커튼", "total_products": 195493, "avg_price": 86559, "median_price": 84459, "recommended_price": 79659, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "생활/건강", "gender": "전체", "age": "전체", "rank": 9, "keyword": "빨래건조대", "link_id": "빨래건조대", "total_products": 84836, "avg_price": 39768, "median_price": 37668, "recommended_price": 32868, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "생활/건강", "gender": "여성", "age": "30대", "rank": 5, "keyword": "암막커튼", "link_id": "암막커튼", "total_products": 195493, "avg_price": 86559, "median_price": 84459, "recommended_price": 79659, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "생활/건강", "gender": "남성", "age": "30대", "rank": 5, "keyword": "암막커튼", "link_id": "암막커튼", "total_products": 195493, "avg_price": 86559, "median_price": 84459, "recommended_price": 79659, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "식품", "gender": "전체", "age": "전체", "rank": 2, "keyword": "그릭요거트", "link_id": "그릭요거트", "total_products": 178041, "avg_price": 97683, "median_price": 95583, "recommended_price": 90783, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "식품", "gender": "전체", "age": "전체", "rank": 4, "keyword": "단백질쉐이크", "link_id": "단백질쉐이크", "total_products": 133641, "avg_price": 100483, "median_price": 98383, "recommended_price": 93583, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "식품", "gender": "전체", "age": "전체", "rank": 5, "keyword": "원두커피", "link_id": "원두커피", "total_products": 143296, "avg_price": 74748, "median_price": 72648, "recommended_price": 67848, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "식품", "gender": "전체", "age": "전체", "rank": 6, "keyword": "스테이크", "link_id": "스테이크", "total_products": 133888, "avg_price": 44444, "median_price": 42344, "recommended_price": 37544, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "식품", "gender": "전체", "age": "전체", "rank": 9, "keyword": "생수", "link_id": "생수", "total_products": 83357, "avg_price": 52791, "median_price": 50691, "recommended_price": 45891, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "식품", "gender": "전체", "age": "전체", "rank": 10, "keyword": "올리브유", "link_id": "올리브유", "total_products": 123204, "avg_price": 61552, "median_price": 59452, "recommended_price": 54652, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "식품", "gender": "여성", "age": "30대", "rank": 2, "keyword": "그릭요거트", "link_id": "그릭요거트", "total_products": 178041, "avg_price": 97683, "median_price": 95583, "recommended_price": 90783, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "식품", "gender": "여성", "age": "30대", "rank": 4, "keyword": "단백질쉐이크", "link_id": "단백질쉐이크", "total_products": 133641, "avg_price": 100483, "median_price": 98383, "recommended_price": 93583, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "식품", "gender": "여성", "age": "30대", "rank": 5, "keyword": "원두커피", "link_id": "원두커피", "total_products": 143296, "avg_price": 74748, "median_price": 72648, "recommended_price": 67848, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "식품", "gender": "남성", "age": "30대", "rank": 2, "keyword": "그릭요거트", "link_id": "그릭요거트", "total_products": 178041, "avg_price": 97683, "median_price": 95583, "recommended_price": 90783, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "식품", "gender": "남성", "age": "30대", "rank": 4, "keyword": "단백질쉐이크", "link_id": "단백질쉐이크", "total_products": 133641, "avg_price": 100483, "median_price": 98383, "recommended_price": 93583, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "식품", "gender": "남성", "age": "30대", "rank": 5, "keyword": "원두커피", "link_id": "원두커피", "total_products": 143296, "avg_price": 74748, "median_price": 72648, "recommended_price": 67848, "comp_grade": "B (보통 경쟁)", "golden_score": 70}, {"category": "디지털/가전", "gender": "전체", "age": "전체", "rank": 1, "keyword": "냉장고", "link_id": "냉장고", "total_products": 377214, "avg_price": 41182, "median_price": 39082, "recommended_price": 34282, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "디지털/가전", "gender": "전체", "age": "전체", "rank": 6, "keyword": "김치냉장고", "link_id": "김치냉장고", "total_products": 225398, "avg_price": 71574, "median_price": 69474, "recommended_price": 64674, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "디지털/가전", "gender": "전체", "age": "전체", "rank": 7, "keyword": "냉난방기", "link_id": "냉난방기", "total_products": 364510, "avg_price": 62030, "median_price": 59930, "recommended_price": 55130, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "디지털/가전", "gender": "전체", "age": "전체", "rank": 8, "keyword": "전자레인지", "link_id": "전자레인지", "total_products": 351892, "avg_price": 52496, "median_price": 50396, "recommended_price": 45596, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "디지털/가전", "gender": "전체", "age": "전체", "rank": 9, "keyword": "에어프라이어", "link_id": "에어프라이어", "total_products": 318636, "avg_price": 49168, "median_price": 47068, "recommended_price": 42268, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "디지털/가전", "gender": "여성", "age": "30대", "rank": 3, "keyword": "냉장고", "link_id": "냉장고", "total_products": 377214, "avg_price": 41182, "median_price": 39082, "recommended_price": 34282, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "디지털/가전", "gender": "여성", "age": "30대", "rank": 4, "keyword": "냉난방기", "link_id": "냉난방기", "total_products": 364510, "avg_price": 62030, "median_price": 59930, "recommended_price": 55130, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "디지털/가전", "gender": "남성", "age": "30대", "rank": 3, "keyword": "폴드8케이스", "link_id": "폴드8케이스", "total_products": 227952, "avg_price": 61276, "median_price": 59176, "recommended_price": 54376, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "디지털/가전", "gender": "남성", "age": "30대", "rank": 5, "keyword": "냉장고", "link_id": "냉장고", "total_products": 377214, "avg_price": 41182, "median_price": 39082, "recommended_price": 34282, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "스포츠/레저", "gender": "전체", "age": "전체", "rank": 1, "keyword": "등산화", "link_id": "등산화", "total_products": 382829, "avg_price": 87927, "median_price": 85827, "recommended_price": 81027, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "스포츠/레저", "gender": "전체", "age": "전체", "rank": 2, "keyword": "전기자전거", "link_id": "전기자전거", "total_products": 347784, "avg_price": 71092, "median_price": 68992, "recommended_price": 64192, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "스포츠/레저", "gender": "전체", "age": "전체", "rank": 3, "keyword": "세네팁런에기", "link_id": "세네팁런에기", "total_products": 299413, "avg_price": 92519, "median_price": 90419, "recommended_price": 85619, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "스포츠/레저", "gender": "전체", "age": "전체", "rank": 4, "keyword": "백경노블리어", "link_id": "백경노블리어", "total_products": 306858, "avg_price": 85554, "median_price": 83454, "recommended_price": 78654, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "스포츠/레저", "gender": "전체", "age": "전체", "rank": 5, "keyword": "팁런에기", "link_id": "팁런에기", "total_products": 360169, "avg_price": 78347, "median_price": 76247, "recommended_price": 71447, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "스포츠/레저", "gender": "전체", "age": "전체", "rank": 6, "keyword": "트레킹화", "link_id": "트레킹화", "total_products": 343909, "avg_price": 91967, "median_price": 89867, "recommended_price": 85067, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "스포츠/레저", "gender": "전체", "age": "전체", "rank": 7, "keyword": "남성골프화", "link_id": "남성골프화", "total_products": 285265, "avg_price": 65595, "median_price": 63495, "recommended_price": 58695, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "스포츠/레저", "gender": "전체", "age": "전체", "rank": 8, "keyword": "골프화", "link_id": "골프화", "total_products": 363968, "avg_price": 55484, "median_price": 53384, "recommended_price": 48584, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "스포츠/레저", "gender": "전체", "age": "전체", "rank": 10, "keyword": "무릎보호대", "link_id": "무릎보호대", "total_products": 203294, "avg_price": 75222, "median_price": 73122, "recommended_price": 68322, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "스포츠/레저", "gender": "여성", "age": "30대", "rank": 3, "keyword": "롱패딩", "link_id": "롱패딩", "total_products": 440050, "avg_price": 64050, "median_price": 61950, "recommended_price": 57150, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "스포츠/레저", "gender": "여성", "age": "30대", "rank": 5, "keyword": "아레나수영복", "link_id": "아레나수영복", "total_products": 357090, "avg_price": 40570, "median_price": 38470, "recommended_price": 33670, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "스포츠/레저", "gender": "남성", "age": "30대", "rank": 1, "keyword": "백경노블리어", "link_id": "백경노블리어", "total_products": 306858, "avg_price": 85554, "median_price": 83454, "recommended_price": 78654, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "스포츠/레저", "gender": "남성", "age": "30대", "rank": 2, "keyword": "세네팁런에기", "link_id": "세네팁런에기", "total_products": 299413, "avg_price": 92519, "median_price": 90419, "recommended_price": 85619, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "스포츠/레저", "gender": "남성", "age": "30대", "rank": 3, "keyword": "전기자전거", "link_id": "전기자전거", "total_products": 347784, "avg_price": 71092, "median_price": 68992, "recommended_price": 64192, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "스포츠/레저", "gender": "남성", "age": "30대", "rank": 4, "keyword": "팁런에기", "link_id": "팁런에기", "total_products": 360169, "avg_price": 78347, "median_price": 76247, "recommended_price": 71447, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "스포츠/레저", "gender": "남성", "age": "30대", "rank": 5, "keyword": "등산화", "link_id": "등산화", "total_products": 382829, "avg_price": 87927, "median_price": 85827, "recommended_price": 81027, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "패션의류", "gender": "전체", "age": "전체", "rank": 2, "keyword": "바람막이", "link_id": "바람막이", "total_products": 456709, "avg_price": 63367, "median_price": 61267, "recommended_price": 56467, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "패션의류", "gender": "전체", "age": "전체", "rank": 3, "keyword": "블라우스", "link_id": "블라우스", "total_products": 358388, "avg_price": 77944, "median_price": 75844, "recommended_price": 71044, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "패션의류", "gender": "전체", "age": "전체", "rank": 4, "keyword": "후드집업", "link_id": "후드집업", "total_products": 451638, "avg_price": 42694, "median_price": 40594, "recommended_price": 35794, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "패션의류", "gender": "전체", "age": "전체", "rank": 6, "keyword": "트위드자켓", "link_id": "트위드자켓", "total_products": 336867, "avg_price": 85921, "median_price": 83821, "recommended_price": 79021, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "패션의류", "gender": "전체", "age": "전체", "rank": 8, "keyword": "올리비아로렌", "link_id": "올리비아로렌", "total_products": 386408, "avg_price": 47204, "median_price": 45104, "recommended_price": 40304, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "패션의류", "gender": "전체", "age": "전체", "rank": 9, "keyword": "여성가디건", "link_id": "여성가디건", "total_products": 210557, "avg_price": 96391, "median_price": 94291, "recommended_price": 89491, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "패션의류", "gender": "여성", "age": "30대", "rank": 2, "keyword": "바람막이", "link_id": "바람막이", "total_products": 456709, "avg_price": 63367, "median_price": 61267, "recommended_price": 56467, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "패션의류", "gender": "여성", "age": "30대", "rank": 3, "keyword": "트렌치코트", "link_id": "트렌치코트", "total_products": 205848, "avg_price": 64924, "median_price": 62824, "recommended_price": 58024, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "패션의류", "gender": "여성", "age": "30대", "rank": 5, "keyword": "슬랙스", "link_id": "슬랙스", "total_products": 305105, "avg_price": 98515, "median_price": 96415, "recommended_price": 91615, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "패션의류", "gender": "남성", "age": "30대", "rank": 2, "keyword": "바람막이", "link_id": "바람막이", "total_products": 456709, "avg_price": 63367, "median_price": 61267, "recommended_price": 56467, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "패션의류", "gender": "남성", "age": "30대", "rank": 3, "keyword": "트렌치코트", "link_id": "트렌치코트", "total_products": 205848, "avg_price": 64924, "median_price": 62824, "recommended_price": 58024, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "패션의류", "gender": "남성", "age": "30대", "rank": 5, "keyword": "슬랙스", "link_id": "슬랙스", "total_products": 305105, "avg_price": 98515, "median_price": 96415, "recommended_price": 91615, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "생활/건강", "gender": "전체", "age": "전체", "rank": 1, "keyword": "마스크", "link_id": "마스크", "total_products": 413928, "avg_price": 94964, "median_price": 92864, "recommended_price": 88064, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "생활/건강", "gender": "전체", "age": "전체", "rank": 3, "keyword": "전동칫솔", "link_id": "전동칫솔", "total_products": 363228, "avg_price": 50864, "median_price": 48764, "recommended_price": 43964, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "생활/건강", "gender": "전체", "age": "전체", "rank": 4, "keyword": "멀티비타민", "link_id": "멀티비타민", "total_products": 329424, "avg_price": 47412, "median_price": 45312, "recommended_price": 40512, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "생활/건강", "gender": "전체", "age": "전체", "rank": 10, "keyword": "눈마사지기", "link_id": "눈마사지기", "total_products": 313900, "avg_price": 91600, "median_price": 89500, "recommended_price": 84700, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "생활/건강", "gender": "여성", "age": "30대", "rank": 1, "keyword": "마스크", "link_id": "마스크", "total_products": 413928, "avg_price": 94964, "median_price": 92864, "recommended_price": 88064, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "생활/건강", "gender": "여성", "age": "30대", "rank": 3, "keyword": "전동칫솔", "link_id": "전동칫솔", "total_products": 363228, "avg_price": 50864, "median_price": 48764, "recommended_price": 43964, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "생활/건강", "gender": "여성", "age": "30대", "rank": 4, "keyword": "멀티비타민", "link_id": "멀티비타민", "total_products": 329424, "avg_price": 47412, "median_price": 45312, "recommended_price": 40512, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "생활/건강", "gender": "남성", "age": "30대", "rank": 1, "keyword": "마스크", "link_id": "마스크", "total_products": 413928, "avg_price": 94964, "median_price": 92864, "recommended_price": 88064, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "생활/건강", "gender": "남성", "age": "30대", "rank": 3, "keyword": "전동칫솔", "link_id": "전동칫솔", "total_products": 363228, "avg_price": 50864, "median_price": 48764, "recommended_price": 43964, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "생활/건강", "gender": "남성", "age": "30대", "rank": 4, "keyword": "멀티비타민", "link_id": "멀티비타민", "total_products": 329424, "avg_price": 47412, "median_price": 45312, "recommended_price": 40512, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "식품", "gender": "전체", "age": "전체", "rank": 1, "keyword": "닭가슴살", "link_id": "닭가슴살", "total_products": 256781, "avg_price": 46303, "median_price": 44203, "recommended_price": 39403, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "식품", "gender": "전체", "age": "전체", "rank": 3, "keyword": "사과", "link_id": "사과", "total_products": 236296, "avg_price": 78748, "median_price": 76648, "recommended_price": 71848, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "식품", "gender": "전체", "age": "전체", "rank": 7, "keyword": "냉동피자", "link_id": "냉동피자", "total_products": 447438, "avg_price": 98094, "median_price": 95994, "recommended_price": 91194, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "식품", "gender": "여성", "age": "30대", "rank": 1, "keyword": "닭가슴살", "link_id": "닭가슴살", "total_products": 256781, "avg_price": 46303, "median_price": 44203, "recommended_price": 39403, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "식품", "gender": "여성", "age": "30대", "rank": 3, "keyword": "사과", "link_id": "사과", "total_products": 236296, "avg_price": 78748, "median_price": 76648, "recommended_price": 71848, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "식품", "gender": "남성", "age": "30대", "rank": 1, "keyword": "닭가슴살", "link_id": "닭가슴살", "total_products": 256781, "avg_price": 46303, "median_price": 44203, "recommended_price": 39403, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "식품", "gender": "남성", "age": "30대", "rank": 3, "keyword": "사과", "link_id": "사과", "total_products": 236296, "avg_price": 78748, "median_price": 76648, "recommended_price": 71848, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "가구/인테리어", "gender": "전체", "age": "전체", "rank": 1, "keyword": "인기상품1", "link_id": "인기상품1", "total_products": 337746, "avg_price": 45098, "median_price": 42998, "recommended_price": 38198, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "가구/인테리어", "gender": "전체", "age": "전체", "rank": 2, "keyword": "인기상품2", "link_id": "인기상품2", "total_products": 337883, "avg_price": 45129, "median_price": 43029, "recommended_price": 38229, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "가구/인테리어", "gender": "전체", "age": "전체", "rank": 3, "keyword": "인기상품3", "link_id": "인기상품3", "total_products": 338020, "avg_price": 45160, "median_price": 43060, "recommended_price": 38260, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "가구/인테리어", "gender": "전체", "age": "전체", "rank": 4, "keyword": "인기상품4", "link_id": "인기상품4", "total_products": 338157, "avg_price": 45191, "median_price": 43091, "recommended_price": 38291, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "가구/인테리어", "gender": "전체", "age": "전체", "rank": 5, "keyword": "인기상품5", "link_id": "인기상품5", "total_products": 338294, "avg_price": 45222, "median_price": 43122, "recommended_price": 38322, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "가구/인테리어", "gender": "여성", "age": "30대", "rank": 1, "keyword": "인기상품1", "link_id": "인기상품1", "total_products": 337746, "avg_price": 45098, "median_price": 42998, "recommended_price": 38198, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "가구/인테리어", "gender": "여성", "age": "30대", "rank": 2, "keyword": "인기상품2", "link_id": "인기상품2", "total_products": 337883, "avg_price": 45129, "median_price": 43029, "recommended_price": 38229, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "가구/인테리어", "gender": "여성", "age": "30대", "rank": 3, "keyword": "인기상품3", "link_id": "인기상품3", "total_products": 338020, "avg_price": 45160, "median_price": 43060, "recommended_price": 38260, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "가구/인테리어", "gender": "여성", "age": "30대", "rank": 4, "keyword": "인기상품4", "link_id": "인기상품4", "total_products": 338157, "avg_price": 45191, "median_price": 43091, "recommended_price": 38291, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "가구/인테리어", "gender": "여성", "age": "30대", "rank": 5, "keyword": "인기상품5", "link_id": "인기상품5", "total_products": 338294, "avg_price": 45222, "median_price": 43122, "recommended_price": 38322, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "가구/인테리어", "gender": "남성", "age": "30대", "rank": 1, "keyword": "인기상품1", "link_id": "인기상품1", "total_products": 337746, "avg_price": 45098, "median_price": 42998, "recommended_price": 38198, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "가구/인테리어", "gender": "남성", "age": "30대", "rank": 2, "keyword": "인기상품2", "link_id": "인기상품2", "total_products": 337883, "avg_price": 45129, "median_price": 43029, "recommended_price": 38229, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "가구/인테리어", "gender": "남성", "age": "30대", "rank": 3, "keyword": "인기상품3", "link_id": "인기상품3", "total_products": 338020, "avg_price": 45160, "median_price": 43060, "recommended_price": 38260, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "가구/인테리어", "gender": "남성", "age": "30대", "rank": 4, "keyword": "인기상품4", "link_id": "인기상품4", "total_products": 338157, "avg_price": 45191, "median_price": 43091, "recommended_price": 38291, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}, {"category": "가구/인테리어", "gender": "남성", "age": "30대", "rank": 5, "keyword": "인기상품5", "link_id": "인기상품5", "total_products": 338294, "avg_price": 45222, "median_price": 43122, "recommended_price": 38322, "comp_grade": "C (치열한 레드오션)", "golden_score": 55}];
+  const catData = {"디지털/가전": 20, "패션의류": 20, "생활/건강": 20, "식품": 20, "스포츠/레저": 20, "가구/인테리어": 15};
+  const gradeData = {"S": 5, "A": 5, "B": 36, "C": 69};
+
+  // 1. 카테고리 도넛 차트
+  new Chart(document.getElementById('catChart'), {
+    type: 'doughnut',
+    data: {
+      labels: Object.keys(catData),
+      datasets: [{
+        data: Object.values(catData),
+        backgroundColor: ['#38bdf8', '#818cf8', '#c084fc', '#f43f5e', '#fbbf24', '#34d399', '#a78bfa', '#fb7185'],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { position: 'bottom', labels: { color: '#94a3b8', font: { size: 11 } } } }
+    }
+  });
+
+  // 2. 경쟁 등급 바 차트
+  new Chart(document.getElementById('gradeChart'), {
+    type: 'bar',
+    data: {
+      labels: ['S급(초특급)', 'A급(유리함)', 'B급(보통)', 'C급(치열)'],
+      datasets: [{
+        data: [gradeData['S'], gradeData['A'], gradeData['B'], gradeData['C']],
+        backgroundColor: ['#34d399', '#38bdf8', '#fbbf24', '#f43f5e'],
+        borderRadius: 8
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: { ticks: { color: '#94a3b8' }, grid: { display: false } },
+        y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+      },
+      plugins: { legend: { display: false } }
+    }
+  });
+
+  // 3. 가격 비교 바 차트
+  new Chart(document.getElementById('priceCompChart'), {
+    type: 'bar',
+    data: {
+      labels: ["닌텐도스위치2", "에고이스트", "스웨이드자켓", "샤워기필터", "그래놀라", "베개", "유산균", "섬유유연제", "베개", "베개"],
+      datasets: [
+        {
+          label: '평균가',
+          data: [76706, 43468, 45317, 80272, 84288, 39688, 41196, 89324, 39688, 39688],
+          backgroundColor: 'rgba(148, 163, 184, 0.4)',
+          borderRadius: 6
+        },
+        {
+          label: '추천진입가',
+          data: [69806, 36568, 38417, 73372, 77388, 32788, 34296, 82424, 32788, 32788],
+          backgroundColor: '#38bdf8',
+          borderRadius: 6
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: { ticks: { color: '#94a3b8', font: { size: 10 } }, grid: { display: false } },
+        y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+      },
+      plugins: { legend: { labels: { color: '#94a3b8' } } }
+    }
+  });
+
+  // 카테고리 필터 버튼 동적 생성
+  const catFilterContainer = document.getElementById('catFilters');
+  Object.keys(catData).slice(0, 7).forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'btn-filter';
+    btn.innerText = cat;
+    btn.onclick = () => filterCategory(cat);
+    catFilterContainer.appendChild(btn);
+  });
+
+  let currentCategory = '전체';
+
+  function filterCategory(cat) {
+    currentCategory = cat;
+    document.querySelectorAll('.btn-filter').forEach(b => {
+      b.classList.toggle('active', b.innerText === (cat === '전체' ? '전체보기' : cat));
+    });
+    applyFilters();
+  }
+
+  function filterTable() {
+    applyFilters();
+  }
+
+  function applyFilters() {
+    const searchVal = document.getElementById('searchInput').value.toLowerCase();
+    const rows = document.querySelectorAll('#mainTable tbody tr');
+    rows.forEach(r => {
+      const text = r.innerText.toLowerCase();
+      const cat = r.getAttribute('data-cat');
+      const matchesCat = (currentCategory === '전체' || cat === currentCategory);
+      const matchesSearch = text.includes(searchVal);
+      r.style.display = (matchesCat && matchesSearch) ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
