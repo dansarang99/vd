@@ -2,7 +2,8 @@
   "opal_version": "2026.1",
   "app_name": "Wanju_LocalFood_Realtime_Monitor",
   "title": "완주로컬푸드 오늘의 판매현황 실시간 모니터링 에이전트",
-  "description": "공공데이터포털 오픈API를 호출하여 시간대별 완주군 로컬푸드 직매장 매출을 집계하고 실시간 분석 CSV를 생성하는 Opal 워크플로우",
+  "creator": "(AX)창업기술 이한규 대표",
+  "description": "공공데이터포털 오픈API를 호출하여 완주군 로컬푸드 직매장 매출을 집계하고 실시간 분석 CSV를 생성하는 Opal 워크플로우",
   "nodes": [
     {
       "id": "node_trigger",
@@ -16,8 +17,9 @@
       "id": "node_api_fetch",
       "type": "rest_api_request",
       "params": {
-        "url": "https://apis.data.go.kr/4790000/localFoodSaleInfo/getSaleInfo",
+        "url": "https://apis.data.go.kr/4720000/wanjulocalfoodsalemonth/getSaleMonthList",
         "method": "GET",
+        "serviceKey": "fiskecT9sTDtX%2FSiEp4PEucmrVfqb4bhdrcnJ1ZeJ4fTqu9ChfrDDSa6mchONPj4CaUb3UV8Du8AW1RPGEgHPg%3D%3D",
         "timeout_seconds": 5,
         "response_format": "XML"
       }
